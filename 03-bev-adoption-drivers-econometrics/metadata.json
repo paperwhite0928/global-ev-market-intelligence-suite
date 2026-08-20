@@ -1,0 +1,6 @@
+{
+  "name": "Global EV Adoption Drivers Analysis",
+  "description": "Comprehensive econometric and machine learning platform analyzing global BEV adoption drivers (2020-2025) across 3 key regions and 7 major automotive OEMs.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

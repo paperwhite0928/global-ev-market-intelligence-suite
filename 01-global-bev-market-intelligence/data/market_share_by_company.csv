@@ -1,0 +1,12 @@
+market = pd.read_csv("global_bev_market.csv")
+
+df = df.merge(
+    market[["year","total_global_bev_sales"]],
+    on="year"
+)
+
+df["market_share"] = (
+    df["bev_sales"]
+    / df["total_global_bev_sales"]
+    * 100
+)

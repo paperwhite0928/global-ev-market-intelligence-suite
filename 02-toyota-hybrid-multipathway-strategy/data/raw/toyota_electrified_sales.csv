@@ -1,0 +1,113 @@
+year,region,powertrain,units
+2019,Global,HEV,1895
+2019,Global,PHEV,28
+2019,Global,BEV,1
+2019,Global,FCEV,3
+2020,Global,HEV,1910
+2020,Global,PHEV,44
+2020,Global,BEV,3
+2020,Global,FCEV,2
+2021,Global,HEV,2482
+2021,Global,PHEV,112
+2021,Global,BEV,14
+2021,Global,FCEV,6
+2022,Global,HEV,2603
+2022,Global,PHEV,90
+2022,Global,BEV,24
+2022,Global,FCEV,4
+2023,Global,HEV,3420
+2023,Global,PHEV,125
+2023,Global,BEV,104
+2023,Global,FCEV,4
+2024,Global,HEV,4160
+2024,Global,PHEV,158
+2024,Global,BEV,141
+2024,Global,FCEV,2
+2025,Global,HEV,4600
+2025,Global,PHEV,190
+2025,Global,BEV,200
+2025,Global,FCEV,2
+2019,North America,HEV,550
+2019,North America,PHEV,25
+2019,North America,BEV,0
+2019,North America,FCEV,2
+2020,North America,HEV,570
+2020,North America,PHEV,30
+2020,North America,BEV,1
+2020,North America,FCEV,1
+2021,North America,HEV,710
+2021,North America,PHEV,52
+2021,North America,BEV,2
+2021,North America,FCEV,3
+2022,North America,HEV,740
+2022,North America,PHEV,45
+2022,North America,BEV,5
+2022,North America,FCEV,2
+2023,North America,HEV,890
+2023,North America,PHEV,65
+2023,North America,BEV,28
+2023,North America,FCEV,3
+2024,North America,HEV,1180
+2024,North America,PHEV,85
+2024,North America,BEV,42
+2024,North America,FCEV,1
+2025,North America,HEV,1350
+2025,North America,PHEV,105
+2025,North America,BEV,65
+2025,North America,FCEV,1
+2019,Europe,HEV,560
+2019,Europe,PHEV,2
+2019,Europe,BEV,1
+2019,Europe,FCEV,0
+2020,Europe,HEV,585
+2020,Europe,PHEV,10
+2020,Europe,BEV,2
+2020,Europe,FCEV,0
+2021,Europe,HEV,715
+2021,Europe,PHEV,45
+2021,Europe,BEV,6
+2021,Europe,FCEV,1
+2022,Europe,HEV,735
+2022,Europe,PHEV,35
+2022,Europe,BEV,10
+2022,Europe,FCEV,1
+2023,Europe,HEV,865
+2023,Europe,PHEV,45
+2023,Europe,BEV,28
+2023,Europe,FCEV,1
+2024,Europe,HEV,980
+2024,Europe,PHEV,52
+2024,Europe,BEV,38
+2024,Europe,FCEV,1
+2025,Europe,HEV,1080
+2025,Europe,PHEV,60
+2025,Europe,BEV,55
+2025,Europe,FCEV,1
+2019,Asia,HEV,785
+2019,Asia,PHEV,1
+2019,Asia,BEV,0
+2019,Asia,FCEV,1
+2020,Asia,HEV,755
+2020,Asia,PHEV,4
+2020,Asia,BEV,0
+2020,Asia,FCEV,1
+2021,Asia,HEV,1057
+2021,Asia,PHEV,15
+2021,Asia,BEV,6
+2021,Asia,FCEV,2
+2022,Asia,HEV,1128
+2022,Asia,PHEV,10
+2022,Asia,BEV,9
+2022,Asia,FCEV,1
+2023,Asia,HEV,1665
+2023,Asia,PHEV,15
+2023,Asia,BEV,48
+2023,Asia,FCEV,0
+2024,Asia,HEV,2000
+2024,Asia,PHEV,21
+2024,Asia,BEV,61
+2024,Asia,FCEV,0
+2025,Asia,HEV,2170
+2025,Asia,PHEV,25
+2025,Asia,BEV,80
+2025,Asia,FCEV,0

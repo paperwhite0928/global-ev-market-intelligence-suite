@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Pure BEV Market Intelligence Dashboard (2020–2025)</title>
+    <!-- Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --border-color: #e2e8f0;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --primary: #2563eb;
+            --primary-light: #eff6ff;
+            --radius-lg: 14px;
+            --radius-md: 8px;
+            --radius-sm: 6px;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.07);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .dashboard-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 20px 24px 40px;
+        }
+
+        /* Header */
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .header-title-group h1 {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 3px 10px;
+            background: #dbeafe;
+            color: #1e40af;
+            border-radius: 9999px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .header-subtitle {
+            color: var(--text-secondary);
+            font-size: 13.5px;
+            margin-top: 4px;
+        }
+
+        .header-meta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .meta-pill {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 6px 12px;
+            border-radius: var(--radius-sm);
+            font-size: 12.5px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* KPI Cards Grid */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .kpi-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 18px 20px;
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .kpi-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3.5px;
+            background: var(--primary);
+        }
+
+        .kpi-card.byd::before { background: #E11D48; }
+        .kpi-card.tesla::before { background: #7C3AED; }
+        .kpi-card.market::before { background: #2563eb; }
+        .kpi-card.legacy::before { background: #00287A; }
+
+        .kpi-title {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+        }
+
+        .kpi-value {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .kpi-trend {
+            margin-top: 8px;
+            font-size: 12.5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .trend-up {
+            color: #059669;
+            font-weight: 600;
+        }
+
+        .trend-desc {
+            color: var(--text-muted);
+        }
+
+        /* Tab Navigation */
+        .tabs-nav-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 6px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .tabs-nav {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+        }
+
+        .tab-btn {
+            flex: 1;
+            min-width: 180px;
+            padding: 10px 16px;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 13.5px;
+            font-weight: 600;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .tab-btn:hover {
+            background: var(--bg-main);
+            color: var(--text-primary);
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: #ffffff;
+            box-shadow: 0 3px 8px rgba(37, 99, 235, 0.25);
+        }
+
+        /* Tab Contents */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Grid Layouts */
+        .dashboard-grid-2x2 {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .dashboard-grid-1x2 {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .dashboard-grid-single {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        /* Dashboard Cards */
+        .chart-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 18px 20px;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            min-width: 0;
+        }
+
+        .chart-card-header {
+            margin-bottom: 12px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .chart-card-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .chart-card-subtitle {
+            font-size: 12.5px;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+
+        .chart-container {
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            min-width: 0;
+        }
+
+        .chart-container .plotly-graph-div {
+            width: 100% !important;
+            min-width: 0 !important;
+        }
+
+        /* Strategic Insight Callout */
+        .insight-box {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--primary);
+            padding: 16px 20px;
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin-top: 20px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .insight-box h4 {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        .insight-box p {
+            font-size: 13.5px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Battery Chem Specs Grid */
+        .chem-specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .chem-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 16px 18px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .chem-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: var(--radius-sm);
+            font-size: 11.5px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .chem-badge.lfp { background: #fef3c7; color: #92400e; }
+        .chem-badge.ncm { background: #e0e7ff; color: #3730a3; }
+        .chem-badge.nca { background: #fae8ff; color: #86198f; }
+        .chem-badge.blade { background: #fee2e2; color: #991b1b; }
+
+        .chem-card h4 {
+            font-size: 14.5px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .chem-card ul {
+            padding-left: 18px;
+            font-size: 12.5px;
+            color: var(--text-secondary);
+        }
+
+        .chem-card li {
+            margin-bottom: 4px;
+        }
+
+        /* Pivot Growth Table */
+        .table-responsive {
+            overflow-x: auto;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            background: var(--bg-card);
+            box-shadow: var(--shadow-sm);
+            margin-top: 20px;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 13px;
+        }
+
+        .data-table th {
+            background: #f1f5f9;
+            color: var(--text-secondary);
+            font-weight: 600;
+            padding: 12px 16px;
+            border-bottom: 2px solid var(--border-color);
+            white-space: nowrap;
+        }
+
+        .data-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-primary);
+        }
+
+        .data-table tr:hover {
+            background: #f8fafc;
+        }
+
+        .company-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding-left: 8px;
+            border-left: 3px solid transparent;
+        }
+
+        .company-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .dashboard-grid-2x2, .dashboard-grid-1x2 {
+                grid-template-columns: 1fr;
+            }
+            .kpi-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .dashboard-container {
+                padding: 14px;
+            }
+            .kpi-grid {
+                grid-template-columns: 1fr;
+            }
+            .tab-btn {
+                min-width: 140px;
+                padding: 8px 12px;
+                font-size: 12.5px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="dashboard-container">
+    <!-- Header -->
+    <header class="dashboard-header">
+        <div class="header-title-group">
+            <h1>
+                ⚡ Global Pure BEV Market Intelligence Dashboard
+                <span class="header-badge">2020 – 2025</span>
+            </h1>
+            <p class="header-subtitle">Empirical Market Analysis of 6 Major Automakers (BYD, Tesla, VW, Hyundai-Kia, BMW, Mercedes-Benz) & Battery Strategies</p>
+        </div>
+        <div class="header-meta">
+            <div class="meta-pill">📊 Scope: 100% Pure BEVs</div>
+            <div class="meta-pill">🔄 Data Benchmark: IEA & Official IR</div>
+        </div>
+    </header>
+
+    <!-- Top KPI Cards -->
+    <section class="kpi-grid">
+        <div class="kpi-card market">
+            <div class="kpi-title">2025 Global BEV Penetration</div>
+            <div class="kpi-value">19.7%</div>
+            <div class="kpi-trend">
+                <span class="trend-up">▲ +16.6%p</span>
+                <span class="trend-desc">Expanded from 3.1% in 2020 (7.0x)</span>
+            </div>
+        </div>
+
+        <div class="kpi-card byd">
+            <div class="kpi-title">2025 Global #1 Volume (BYD)</div>
+            <div class="kpi-value">2,256,714 units</div>
+            <div class="kpi-trend">
+                <span class="trend-up">▲ +27.9% YoY</span>
+                <span class="trend-desc">Surpassed Tesla with Vertical Integration</span>
+            </div>
+        </div>
+
+        <div class="kpi-card tesla">
+            <div class="kpi-title">2025 Global #2 Volume (Tesla)</div>
+            <div class="kpi-value">1,640,000 units</div>
+            <div class="kpi-trend">
+                <span style="color:#64748b; font-weight:600;">Dedicated Pioneer</span>
+                <span class="trend-desc">11.7% Share · Navigating Maturity</span>
+            </div>
+        </div>
+
+        <div class="kpi-card legacy">
+            <div class="kpi-title">Legacy Leader / Hyundai-Kia Growth</div>
+            <div class="kpi-value">983k / 514k units</div>
+            <div class="kpi-trend">
+                <span class="trend-up">VW 983k · HMG 514k</span>
+                <span class="trend-desc">E-GMP Platform Expansion</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tabs Navigation Bar -->
+    <nav class="tabs-nav-container">
+        <div class="tabs-nav">
+            <button class="tab-btn active" onclick="switchTab('tab-overview', this)">
+                📊 1. Global Market Overview
+            </button>
+            <button class="tab-btn" onclick="switchTab('tab-dynamics', this)">
+                📈 2. Market Share & Growth Dynamics
+            </button>
+            <button class="tab-btn" onclick="switchTab('tab-battery', this)">
+                🔋 3. Battery Technology Strategy
+            </button>
+            <button class="tab-btn" onclick="switchTab('tab-growth-analysis', this)">
+                🚀 4. YoY Growth & Net Volume Expansion
+            </button>
+        </div>
+    </nav>
+
+    <!-- TAB 1: Overview & Market Trends -->
+    <div id="tab-overview" class="tab-content active">
+        <div class="dashboard-grid-2x2">
+            <div class="chart-card">
+                <div class="chart-card-header">
+                    <h2 class="chart-card-title">Global BEV Market Penetration Trajectory (2020–2025)</h2>
+                    <p class="chart-card-subtitle">Share of Pure Electric BEVs in Global Passenger Car Deliveries (%)</p>
+                </div>
+                <div class="chart-container">
+                    <div>                            <div id="405907ea-d1ba-4fcc-8f79-1b0c27c59d13" class="plotly-graph-div" style="height:360px; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("405907ea-d1ba-4fcc-8f79-1b0c27c59d13")) {                    Plotly.newPlot(                        "405907ea-d1ba-4fcc-8f79-1b0c27c59d13",                        [{"fill":"tozeroy","fillcolor":"rgba(37, 99, 235, 0.08)","hovertemplate":"\u003cb\u003eYear %{x}\u003c\u002fb\u003e\u003cbr\u003eGlobal BEV Penetration: \u003cb\u003e%{y:.1f}%\u003c\u002fb\u003e\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#2563eb","shape":"spline","width":3.5},"marker":{"color":"#1d4ed8","line":{"color":"#ffffff","width":2},"size":9,"symbol":"circle"},"mode":"lines+markers+text","name":"Global BEV Penetration Rate (%)","text":["\u003cb\u003e3.1%\u003c\u002fb\u003e","\u003cb\u003e6.1%\u003c\u002fb\u003e","\u003cb\u003e10.1%\u003c\u002fb\u003e","\u003cb\u003e13.2%\u003c\u002fb\u003e","\u003cb\u003e16.3%\u003c\u002fb\u003e","\u003cb\u003e19.7%\u003c\u002fb\u003e"],"textfont":{"color":"#1e293b","size":12},"textposition":"top center","x":{"dtype":"i2","bdata":"5AflB+YH5wfoB+kH"},"y":{"dtype":"f8","bdata":"zczMzMzMCEBmZmZmZmYYQDMzMzMzMyRAZmZmZmZmKkDNzMzMzEwwQDMzMzMzszNA"},"type":"scatter"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"font":{"family":"Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, sans-serif","size":12,"color":"#334155"},"margin":{"l":50,"r":25,"t":30,"b":45},"legend":{"font":{"size":11},"orientation":"h","yanchor":"bottom","y":1.02,"xanchor":"center","x":0.5,"bgcolor":"rgba(255,255,255,0.85)","bordercolor":"#e2e8f0","borderwidth":1},"hoverlabel":{"font":{"size":12,"color":"#ffffff"},"bgcolor":"#1e293b"},"autosize":true,"paper_bgcolor":"rgba(0,0,0,0)","plot_bgcolor":"rgba(0,0,0,0)","height":360,"showlegend":false,"xaxis":{"title":{"text":"Year"},"tickmode":"array","tickvals":[2020,2021,2022,2023,2024,2025],"range":[2019.6,2025.4],"gridcolor":"#f1f5f9"},"yaxis":{"title":{"text":"Penetration Rate (%)"},"range":[0,24],"ticksuffix":"%","gridcolor":"#f1f5f9"},"annotations":[{"arrowcolor":"#64748b","arrowhead":2,"arrowsize":1,"arrowwidth":1.2,"ax":45,"ay":-35,"bgcolor":"#ffffff","bordercolor":"#cbd5e1","borderpad":4,"borderwidth":1,"font":{"color":"#475569","size":11},"showarrow":true,"text":"\u003cb\u003e2020: 3.1%\u003c\u002fb\u003e (Early Niche)","x":2020,"y":3.1},{"arrowcolor":"#2563eb","arrowhead":2,"arrowsize":1,"arrowwidth":1.2,"ax":-90,"ay":-35,"bgcolor":"#eff6ff","bordercolor":"#93c5fd","borderpad":4,"borderwidth":1,"font":{"color":"#1e40af","size":11},"showarrow":true,"text":"\u003cb\u003e2025: 19.7%\u003c\u002fb\u003e (1 in 5 New Cars)","x":2025,"y":19.7}]},                        {"responsive": true, "displayModeBar": false}                    )                };            </script>        </div>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-card-header">
+                    <h2 class="chart-card-title">Annual BEV Deliveries by Top 6 Automakers</h2>
+                    <p class="chart-card-subtitle">Historical Delivery Trends Across Major OEM Groups (2020–2025)</p>
+                </div>
+                <div class="chart-container">
+                    <div>                            <div id="9434bbb2-e79a-43fd-a8c1-2e2d50c51240" class="plotly-graph-div" style="height:360px; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("9434bbb2-e79a-43fd-a8c1-2e2d50c51240")) {                    Plotly.newPlot(                        "9434bbb2-e79a-43fd-a8c1-2e2d50c51240",                        [{"hovertemplate":"\u003cb\u003e%{data.name}\u003c\u002fb\u003e\u003cbr\u003eYear: %{x}\u003cbr\u003eDeliveries: \u003cb\u003e%{y:,.0f} units\u003c\u002fb\u003e\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"BMW Group","line":{"color":"#000000","dash":"solid","width":2.8},"marker":{"symbol":"circle","line":{"color":"#ffffff","width":1.5},"size":7},"mode":"lines+markers","name":"BMW Group","orientation":"v","showlegend":true,"x":{"dtype":"i2","bdata":"5AflB+YH5wfoB+kH"},"xaxis":"x","y":{"dtype":"i4","bdata":"860AAK+VAQDLSgMAd70FAGKCBgDYvgYA"},"yaxis":"y","type":"scatter"},{"hovertemplate":"\u003cb\u003e%{data.name}\u003c\u002fb\u003e\u003cbr\u003eYear: %{x}\u003cbr\u003eDeliveries: \u003cb\u003e%{y:,.0f} units\u003c\u002fb\u003e\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"BYD","line":{"color":"#E11D48","dash":"solid","width":2.8},"marker":{"symbol":"circle","line":{"color":"#ffffff","width":1.5},"size":7},"mode":"lines+markers","name":"BYD","orientation":"v","showlegend":true,"x":{"dtype":"i2","bdata":"5AflB+YH5wfoB+kH"},"xaxis":"x","y":{"dtype":"i4","bdata":"mv8BACrlBAAk5w0ApgcYAIDuGgBKbyIA"},"yaxis":"y","type":"scatter"},{"hovertemplate":"\u003cb\u003e%{data.name}\u003c\u002fb\u003e\u003cbr\u003eYear: %{x}\u003cbr\u003eDeliveries: \u003cb\u003e%{y:,.0f} units\u003c\u002fb\u003e\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"Hyundai-Kia Group","line":{"color":"#00287A","dash":"solid","width":2.8},"marker":{"symbol":"circle","line":{"color":"#ffffff","width":1.5},"size":7},"mode":"lines+markers","name":"Hyundai-Kia Group","orientation":"v","showlegend":true,"x":{"dtype":"i2","bdata":"5AflB+YH5wfoB+kH"},"xaxis":"x","y":{"dtype":"i4","bdata":"kF8BALAqAgBQKAUAKHwGACj5BgCF1gcA"},"yaxis":"y","type":"scatter"},{"hovertemplate":"\u003cb\u003e%{data.name}\u003c\u002fb\u003e\u003cbr\u003eYear: %{x}\u003cbr\u003eDeliveries: \u003cb\u003e%{y:,.0f} units\u003c\u002fb\u003e\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"Mercedes-Benz Group","line":{"color":"#7F8C8D","dash":"solid","width":2.8},"marker":{"symbol":"circle","line":{"color":"#ffffff","width":1.5},"size":7},"mode":"lines+markers","name":"Mercedes-Benz Group","orientation":"v","showlegend":true,"x":{"dtype":"i2","bdata":"5AflB+YH5wfoB+kH"},"xaxis":"x","y":{"dtype":"i4","bdata":"UMMAAOSDAQDrRgIAHKwDAOhuAwBgkwIA"},"yaxis":"y","type":"scatter"},{"hovertemplate":"\u003cb\u003e%{data.name}\u003c\u002fb\u003e\u003cbr\u003eYear: %{x}\u003cbr\u003eDeliveries: \u003cb\u003e%{y:,.0f} units\u003c\u002fb\u003e\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"Tesla Inc.","line":{"color":"#7C3AED","dash":"solid","width":2.8},"marker":{"symbol":"circle","line":{"color":"#ffffff","width":1.5},"size":7},"mode":"lines+markers","name":"Tesla Inc.","orientation":"v","showlegend":true,"x":{"dtype":"i2","bdata":"5AflB+YH5wfoB+kH"},"xaxis":"x","y":{"dtype":"i4","bdata":"Xp8HAOxIDgA7DBQAxZgbADBQGwBABhkA"},"yaxis":"y","type":"scatter"},{"hovertemplate":"\u003cb\u003e%{data.name}\u003c\u002fb\u003e\u003cbr\u003eYear: %{x}\u003cbr\u003eDeliveries: \u003cb\u003e%{y:,.0f} units\u003c\u002fb\u003e\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"Volkswagen Group","line":{"color":"#00A8A8","dash":"solid","width":2.8},"marker":{"symbol":"circle","line":{"color":"#ffffff","width":1.5},"size":7},"mode":"lines+markers","name":"Volkswagen Group","orientation":"v","showlegend":true,"x":{"dtype":"i2","bdata":"5AflB+YH5wfoB+kH"},"xaxis":"x","y":{"dtype":"i4","bdata":"sIgDACTpBgDEuggAHMQLACheCwDY\u002fw4A"},"yaxis":"y","type":"scatter"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"Year"},"tickmode":"linear","dtick":1,"gridcolor":"#f1f5f9"},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"Annual BEV Deliveries (Units)"},"tickformat":",.0f","gridcolor":"#f1f5f9"},"legend":{"title":{"text":"company"},"tracegroupgap":0,"font":{"size":11},"orientation":"h","yanchor":"bottom","y":1.02,"xanchor":"center","x":0.5,"bgcolor":"rgba(255,255,255,0.85)","bordercolor":"#e2e8f0","borderwidth":1},"margin":{"t":35,"l":65,"r":25,"b":45},"font":{"family":"Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, sans-serif","size":12,"color":"#334155"},"hoverlabel":{"font":{"size":12,"color":"#ffffff"},"bgcolor":"#1e293b"},"autosize":true,"paper_bgcolor":"rgba(0,0,0,0)","plot_bgcolor":"rgba(0,0,0,0)","height":360,"showlegend":true},                        {"responsive": true, "displayModeBar": false}                    )                };            </script>        </div>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-card-header">
+                    <h2 class="chart-card-title">2025 BEV Volume Leaderboard</h2>
+                    <p class="chart-card-subtitle">Final Ranked Annual Deliveries by Automaker Group (Units)</p>
+                </div>
+                <div class="chart-container">
+                    <div>                            <div id="198e5e35-06d5-43a9-8c8f-4f7dd02693dc" class="plotly-graph-div" style="height:340px; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("198e5e35-06d5-43a9-8c8f-4f7dd02693dc")) {                    Plotly.newPlot(                        "198e5e35-06d5-43a9-8c8f-4f7dd02693dc",                        [{"hovertemplate":"\u003cb\u003e%{y}\u003c\u002fb\u003e\u003cbr\u003e2025 Deliveries: \u003cb\u003e%{x:,.0f} units\u003c\u002fb\u003e\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"Mercedes-Benz Group","marker":{"color":"#7F8C8D","pattern":{"shape":""},"line":{"color":"#ffffff","width":1}},"name":"Mercedes-Benz Group","orientation":"h","showlegend":true,"text":{"dtype":"f8","bdata":"AAAAAACbBEE="},"textposition":"outside","x":{"dtype":"i4","bdata":"YJMCAA=="},"xaxis":"x","y":["Mercedes-Benz Group"],"yaxis":"y","type":"bar","textfont":{"color":"#334155","size":11},"texttemplate":" %{text:,.0f} units"},{"hovertemplate":"\u003cb\u003e%{y}\u003c\u002fb\u003e\u003cbr\u003e2025 Deliveries: \u003cb\u003e%{x:,.0f} units\u003c\u002fb\u003e\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"BMW Group","marker":{"color":"#000000","pattern":{"shape":""},"line":{"color":"#ffffff","width":1}},"name":"BMW Group","orientation":"h","showlegend":true,"text":{"dtype":"f8","bdata":"AAAAAGD7GkE="},"textposition":"outside","x":{"dtype":"i4","bdata":"2L4GAA=="},"xaxis":"x","y":["BMW Group"],"yaxis":"y","type":"bar","textfont":{"color":"#334155","size":11},"texttemplate":" %{text:,.0f} units"},{"hovertemplate":"\u003cb\u003e%{y}\u003c\u002fb\u003e\u003cbr\u003e2025 Deliveries: \u003cb\u003e%{x:,.0f} units\u003c\u002fb\u003e\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"Hyundai-Kia Group","marker":{"color":"#00287A","pattern":{"shape":""},"line":{"color":"#ffffff","width":1}},"name":"Hyundai-Kia Group","orientation":"h","showlegend":true,"text":{"dtype":"f8","bdata":"AAAAABRaH0E="},"textposition":"outside","x":{"dtype":"i4","bdata":"hdYHAA=="},"xaxis":"x","y":["Hyundai-Kia Group"],"yaxis":"y","type":"bar","textfont":{"color":"#334155","size":11},"texttemplate":" %{text:,.0f} units"},{"hovertemplate":"\u003cb\u003e%{y}\u003c\u002fb\u003e\u003cbr\u003e2025 Deliveries: \u003cb\u003e%{x:,.0f} units\u003c\u002fb\u003e\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"Volkswagen Group","marker":{"color":"#00A8A8","pattern":{"shape":""},"line":{"color":"#ffffff","width":1}},"name":"Volkswagen Group","orientation":"h","showlegend":true,"text":{"dtype":"f8","bdata":"AAAAALD\u002fLUE="},"textposition":"outside","x":{"dtype":"i4","bdata":"2P8OAA=="},"xaxis":"x","y":["Volkswagen Group"],"yaxis":"y","type":"bar","textfont":{"color":"#334155","size":11},"texttemplate":" %{text:,.0f} units"},{"hovertemplate":"\u003cb\u003e%{y}\u003c\u002fb\u003e\u003cbr\u003e2025 Deliveries: \u003cb\u003e%{x:,.0f} units\u003c\u002fb\u003e\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"Tesla Inc.","marker":{"color":"#7C3AED","pattern":{"shape":""},"line":{"color":"#ffffff","width":1}},"name":"Tesla Inc.","orientation":"h","showlegend":true,"text":{"dtype":"f8","bdata":"AAAAAEAGOUE="},"textposition":"outside","x":{"dtype":"i4","bdata":"QAYZAA=="},"xaxis":"x","y":["Tesla Inc."],"yaxis":"y","type":"bar","textfont":{"color":"#334155","size":11},"texttemplate":" %{text:,.0f} units"},{"hovertemplate":"\u003cb\u003e%{y}\u003c\u002fb\u003e\u003cbr\u003e2025 Deliveries: \u003cb\u003e%{x:,.0f} units\u003c\u002fb\u003e\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"BYD","marker":{"color":"#E11D48","pattern":{"shape":""},"line":{"color":"#ffffff","width":1}},"name":"BYD","orientation":"h","showlegend":true,"text":{"dtype":"f8","bdata":"AAAAAKU3QUE="},"textposition":"outside","x":{"dtype":"i4","bdata":"Sm8iAA=="},"xaxis":"x","y":["BYD"],"yaxis":"y","type":"bar","textfont":{"color":"#334155","size":11},"texttemplate":" %{text:,.0f} units"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"Annual Deliveries (Units)"},"tickformat":",.0f","gridcolor":"#f1f5f9","range":[0,2700000]},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":""},"categoryorder":"array","categoryarray":["BYD","Tesla Inc.","Volkswagen Group","Hyundai-Kia Group","BMW Group","Mercedes-Benz Group"],"gridcolor":"#f1f5f9"},"legend":{"title":{"text":"company"},"tracegroupgap":0,"font":{"size":11},"orientation":"h","yanchor":"bottom","y":1.02,"xanchor":"center","x":0.5,"bgcolor":"rgba(255,255,255,0.85)","bordercolor":"#e2e8f0","borderwidth":1},"margin":{"t":15,"l":145,"r":65,"b":40},"barmode":"relative","font":{"family":"Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, sans-serif","size":12,"color":"#334155"},"hoverlabel":{"font":{"size":12,"color":"#ffffff"},"bgcolor":"#1e293b"},"autosize":true,"paper_bgcolor":"rgba(0,0,0,0)","plot_bgcolor":"rgba(0,0,0,0)","height":340,"showlegend":false},                        {"responsive": true, "displayModeBar": false}                    )                };            </script>        </div>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-card-header">
+                    <h2 class="chart-card-title">2025 Top-6 OEM Delivery Distribution</h2>
+                    <p class="chart-card-subtitle">Proportional Share Among the 6 Major Electrified Groups (%)</p>
+                </div>
+                <div class="chart-container">
+                    <div>                            <div id="a3b47173-a64f-4594-b645-ef342cf43c01" class="plotly-graph-div" style="height:340px; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("a3b47173-a64f-4594-b645-ef342cf43c01")) {                    Plotly.newPlot(                        "a3b47173-a64f-4594-b645-ef342cf43c01",                        [{"customdata":[["BMW Group"],["BYD"],["Hyundai-Kia Group"],["Mercedes-Benz Group"],["Tesla Inc."],["Volkswagen Group"]],"domain":{"x":[0.0,1.0],"y":[0.0,1.0]},"hole":0.48,"hovertemplate":"\u003cb\u003e%{label}\u003c\u002fb\u003e\u003cbr\u003eDeliveries: %{value:,.0f} units\u003cbr\u003eShare of Top 6: \u003cb\u003e%{percent}\u003c\u002fb\u003e\u003cextra\u003e\u003c\u002fextra\u003e","labels":["BMW Group","BYD","Hyundai-Kia Group","Mercedes-Benz Group","Tesla Inc.","Volkswagen Group"],"legendgroup":"","marker":{"colors":["#000000","#E11D48","#00287A","#7F8C8D","#7C3AED","#00A8A8"],"line":{"color":"#ffffff","width":2}},"name":"","showlegend":true,"values":{"dtype":"i4","bdata":"2L4GAEpvIgCF1gcAYJMCAEAGGQDY\u002fw4A"},"type":"pie","textfont":{"color":"#ffffff","size":11},"insidetextorientation":"horizontal","textinfo":"percent+label","textposition":"inside"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"legend":{"tracegroupgap":0,"font":{"size":11},"orientation":"h","yanchor":"bottom","y":1.02,"xanchor":"center","x":0.5,"bgcolor":"rgba(255,255,255,0.85)","bordercolor":"#e2e8f0","borderwidth":1},"margin":{"t":20,"l":20,"r":20,"b":20},"font":{"family":"Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, sans-serif","size":12,"color":"#334155"},"hoverlabel":{"font":{"size":12,"color":"#ffffff"},"bgcolor":"#1e293b"},"autosize":true,"paper_bgcolor":"rgba(0,0,0,0)","plot_bgcolor":"rgba(0,0,0,0)","height":340,"showlegend":false,"annotations":[{"font":{"color":"#64748b","size":13},"showarrow":false,"text":"\u003cb\u003e2025\u003c\u002fb\u003e\u003cbr\u003eTop 6","x":0.5,"y":0.5}]},                        {"responsive": true, "displayModeBar": false}                    )                };            </script>        </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="insight-box">
+            <h4>💡 Executive Market Takeaways (2020–2025)</h4>
+            <p>
+                Between 2020 and 2025, the global pure BEV market expanded **7.0x from 2.00M to 14.00M units**, driving adoption penetration from 3.1% to 19.7%.
+                Propelled by 100% in-house battery vertical integration, **BYD ascended to the Global #1 position with 2.26M units (16.1% share)**.
+                **Tesla maintained #2 with 1.64M units (11.7% share)** while managing product cycle maturity.
+                Among legacy titans, **Volkswagen Group (983k units, 7.0% share)** and **Hyundai-Kia Group (514k units, 3.7% share)** established resilient podium positions via dedicated modular architectures (MEB and E-GMP).
+            </p>
+        </div>
+    </div>
+
+    <!-- TAB 2: Competitive Dynamics & Growth -->
+    <div id="tab-dynamics" class="tab-content">
+        <div class="dashboard-grid-1x2">
+            <div class="chart-card">
+                <div class="chart-card-header">
+                    <h2 class="chart-card-title">Global BEV Market Share Dynamics (2020–2025)</h2>
+                    <p class="chart-card-subtitle">Percentage Share of Total Global Pure BEV Market Deliveries (%)</p>
+                </div>
+                <div class="chart-container">
+                    <div>                            <div id="87a5567a-9c4b-4343-8bae-2c0e14aa5abf" class="plotly-graph-div" style="height:380px; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("87a5567a-9c4b-4343-8bae-2c0e14aa5abf")) {                    Plotly.newPlot(                        "87a5567a-9c4b-4343-8bae-2c0e14aa5abf",                        [{"hovertemplate":"\u003cb\u003e%{data.name}\u003c\u002fb\u003e\u003cbr\u003eYear: %{x}\u003cbr\u003eGlobal Share: \u003cb\u003e%{y:.2f}%\u003c\u002fb\u003e\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"BMW Group","line":{"color":"#000000","dash":"solid","width":2.8},"marker":{"symbol":"circle","line":{"color":"#ffffff","width":1.5},"size":7},"mode":"lines+markers","name":"BMW Group","orientation":"v","showlegend":true,"x":{"dtype":"i2","bdata":"5AflB+YH5wfoB+kH"},"xaxis":"x","y":{"dtype":"f8","bdata":"OUVHcvnPAUDSGboizg8CQBxXM1L2pAdA+IT4qLatD0DotnCXZwYPQPZqhL\u002fhQglA"},"yaxis":"y","type":"scatter"},{"hovertemplate":"\u003cb\u003e%{data.name}\u003c\u002fb\u003e\u003cbr\u003eYear: %{x}\u003cbr\u003eGlobal Share: \u003cb\u003e%{y:.2f}%\u003c\u002fb\u003e\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"BYD","line":{"color":"#E11D48","dash":"solid","width":2.8},"marker":{"symbol":"circle","line":{"color":"#ffffff","width":1.5},"size":7},"mode":"lines+markers","name":"BYD","orientation":"v","showlegend":true,"x":{"dtype":"i2","bdata":"5AflB+YH5wfoB+kH"},"xaxis":"x","y":{"dtype":"f8","bdata":"i2zn+6kxGkDgt91yguUbQAHZVRx29ihAAxHZGbuTMECG7JAkngswQHx36g+QHjBA"},"yaxis":"y","type":"scatter"},{"hovertemplate":"\u003cb\u003e%{data.name}\u003c\u002fb\u003e\u003cbr\u003eYear: %{x}\u003cbr\u003eGlobal Share: \u003cb\u003e%{y:.2f}%\u003c\u002fb\u003e\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"Hyundai-Kia Group","line":{"color":"#00287A","dash":"solid","width":2.8},"marker":{"symbol":"circle","line":{"color":"#ffffff","width":1.5},"size":7},"mode":"lines+markers","name":"Hyundai-Kia Group","orientation":"v","showlegend":true,"x":{"dtype":"i2","bdata":"5AflB+YH5wfoB+kH"},"xaxis":"x","y":{"dtype":"f8","bdata":"AAAAAAAAEkALWchCFrIIQFSoUKFChRJAUV5DeQ3lEUCeEuQpQZ4QQAOEUGA+Wg1A"},"yaxis":"y","type":"scatter"},{"hovertemplate":"\u003cb\u003e%{data.name}\u003c\u002fb\u003e\u003cbr\u003eYear: %{x}\u003cbr\u003eGlobal Share: \u003cb\u003e%{y:.2f}%\u003c\u002fb\u003e\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"Mercedes-Benz Group","line":{"color":"#7F8C8D","dash":"solid","width":2.8},"marker":{"symbol":"circle","line":{"color":"#ffffff","width":1.5},"size":7},"mode":"lines+markers","name":"Mercedes-Benz Group","orientation":"v","showlegend":true,"x":{"dtype":"i2","bdata":"5AflB+YH5wfoB+kH"},"xaxis":"x","y":{"dtype":"f8","bdata":"AAAAAAAABEC11eA5AkUBQJRnBGeIWgBAbDUGoEtEBEBddNFFF10AQN1nFxCbSvM\u002f"},"yaxis":"y","type":"scatter"},{"hovertemplate":"\u003cb\u003e%{data.name}\u003c\u002fb\u003e\u003cbr\u003eYear: %{x}\u003cbr\u003eGlobal Share: \u003cb\u003e%{y:.2f}%\u003c\u002fb\u003e\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"Tesla Inc.","line":{"color":"#7C3AED","dash":"solid","width":2.8},"marker":{"symbol":"circle","line":{"color":"#ffffff","width":1.5},"size":7},"mode":"lines+markers","name":"Tesla Inc.","orientation":"v","showlegend":true,"x":{"dtype":"i2","bdata":"5AflB+YH5wfoB+kH"},"xaxis":"x","y":{"dtype":"f8","bdata":"CtejcD36OEBWG5ctAFo0QBfnFzx6\u002fzFA2ve9XKYJM0BGF1100UUwQNy2bdu2bSdA"},"yaxis":"y","type":"scatter"},{"hovertemplate":"\u003cb\u003e%{data.name}\u003c\u002fb\u003e\u003cbr\u003eYear: %{x}\u003cbr\u003eGlobal Share: \u003cb\u003e%{y:.2f}%\u003c\u002fb\u003e\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"Volkswagen Group","line":{"color":"#00A8A8","dash":"solid","width":2.8},"marker":{"symbol":"circle","line":{"color":"#ffffff","width":1.5},"size":7},"mode":"lines+markers","name":"Volkswagen Group","orientation":"v","showlegend":true,"x":{"dtype":"i2","bdata":"5AflB+YH5wfoB+kH"},"xaxis":"x","y":{"dtype":"f8","bdata":"KVyPwvUoJ0Djfl1S+bAjQJBV3u8SWR9AV815utI7IEAYXXTRRRcbQF\u002fxFV\u002fxFRxA"},"yaxis":"y","type":"scatter"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"Year"},"tickmode":"linear","dtick":1,"gridcolor":"#f1f5f9"},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"Global BEV Market Share (%)"},"ticksuffix":"%","gridcolor":"#f1f5f9"},"legend":{"title":{"text":"company"},"tracegroupgap":0,"font":{"size":11},"orientation":"h","yanchor":"bottom","y":1.02,"xanchor":"center","x":0.5,"bgcolor":"rgba(255,255,255,0.85)","bordercolor":"#e2e8f0","borderwidth":1},"margin":{"t":35,"l":60,"r":25,"b":45},"font":{"family":"Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, sans-serif","size":12,"color":"#334155"},"hoverlabel":{"font":{"size":12,"color":"#ffffff"},"bgcolor":"#1e293b"},"autosize":true,"paper_bgcolor":"rgba(0,0,0,0)","plot_bgcolor":"rgba(0,0,0,0)","height":380,"showlegend":true},                        {"responsive": true, "displayModeBar": false}                    )                };            </script>        </div>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-card-header">
+                    <h2 class="chart-card-title">Annual YoY Delivery Growth Rate Comparison</h2>
+                    <p class="chart-card-subtitle">Year-over-Year Percentage Growth by Automaker Group (%)</p>
+                </div>
+                <div class="chart-container">
+                    <div>                            <div id="f70c7396-b6de-4b83-aed7-e7f33c4557fb" class="plotly-graph-div" style="height:380px; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("f70c7396-b6de-4b83-aed7-e7f33c4557fb")) {                    Plotly.newPlot(                        "f70c7396-b6de-4b83-aed7-e7f33c4557fb",                        [{"alignmentgroup":"True","hovertemplate":"\u003cb\u003e%{data.name}\u003c\u002fb\u003e\u003cbr\u003eYear: %{x}\u003cbr\u003eYoY Growth: \u003cb\u003e%{y:+.1f}%\u003c\u002fb\u003e\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"BMW Group","marker":{"color":"#000000","pattern":{"shape":""},"line":{"color":"#ffffff","width":0.8}},"name":"BMW Group","offsetgroup":"BMW Group","orientation":"v","showlegend":true,"textposition":"auto","x":{"dtype":"i2","bdata":"5QfmB+cH6AfpBw=="},"xaxis":"x","y":{"dtype":"f8","bdata":"kGoImAanYEAtq7WkxO9aQN5\u002fwejRllJAy0fXIyPNKkCeKWeetAYNQA=="},"yaxis":"y","type":"bar"},{"alignmentgroup":"True","hovertemplate":"\u003cb\u003e%{data.name}\u003c\u002fb\u003e\u003cbr\u003eYear: %{x}\u003cbr\u003eYoY Growth: \u003cb\u003e%{y:+.1f}%\u003c\u002fb\u003e\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"BYD","marker":{"color":"#E11D48","pattern":{"shape":""},"line":{"color":"#ffffff","width":0.8}},"name":"BYD","offsetgroup":"BYD","orientation":"v","showlegend":true,"textposition":"auto","x":{"dtype":"i2","bdata":"5QfmB+cH6AfpBw=="},"xaxis":"x","y":{"dtype":"f8","bdata":"5p0iDWAeYkBR77oeZQBnQCzh9UTQNVJAjLMHqLsmKECUFXk+F9w7QA=="},"yaxis":"y","type":"bar"},{"alignmentgroup":"True","hovertemplate":"\u003cb\u003e%{data.name}\u003c\u002fb\u003e\u003cbr\u003eYear: %{x}\u003cbr\u003eYoY Growth: \u003cb\u003e%{y:+.1f}%\u003c\u002fb\u003e\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"Hyundai-Kia Group","marker":{"color":"#00287A","pattern":{"shape":""},"line":{"color":"#ffffff","width":0.8}},"name":"Hyundai-Kia Group","offsetgroup":"Hyundai-Kia Group","orientation":"v","showlegend":true,"textposition":"auto","x":{"dtype":"i2","bdata":"5QfmB+cH6AfpBw=="},"xaxis":"x","y":{"dtype":"f8","bdata":"OI7jOI7jTEAdSLTC5kBhQHaUbl9ZvTlAFB4eHh4eHkDIYCB76cwoQA=="},"yaxis":"y","type":"bar"},{"alignmentgroup":"True","hovertemplate":"\u003cb\u003e%{data.name}\u003c\u002fb\u003e\u003cbr\u003eYear: %{x}\u003cbr\u003eYoY Growth: \u003cb\u003e%{y:+.1f}%\u003c\u002fb\u003e\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"Mercedes-Benz Group","marker":{"color":"#7F8C8D","pattern":{"shape":""},"line":{"color":"#ffffff","width":0.8}},"name":"Mercedes-Benz Group","offsetgroup":"Mercedes-Benz Group","orientation":"v","showlegend":true,"textposition":"auto","x":{"dtype":"i2","bdata":"5QfmB+cH6AfpBw=="},"xaxis":"x","y":{"dtype":"f8","bdata":"ZmZmZmamWEDTjpa4tCNJQKIxeolio05AI\u002fvrVnUKGsClT\u002fqkT\u002fo4wA=="},"yaxis":"y","type":"bar"},{"alignmentgroup":"True","hovertemplate":"\u003cb\u003e%{data.name}\u003c\u002fb\u003e\u003cbr\u003eYear: %{x}\u003cbr\u003eYoY Growth: \u003cb\u003e%{y:+.1f}%\u003c\u002fb\u003e\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"Tesla Inc.","marker":{"color":"#7C3AED","pattern":{"shape":""},"line":{"color":"#ffffff","width":0.8}},"name":"Tesla Inc.","offsetgroup":"Tesla Inc.","orientation":"v","showlegend":true,"textposition":"auto","x":{"dtype":"i2","bdata":"5QfmB+cH6AfpBw=="},"xaxis":"x","y":{"dtype":"f8","bdata":"iFS7x8vZVUC7QgNh5CtEQPI69I7V00JAkjOJCiZw8L9Yuw+3gMIgwA=="},"yaxis":"y","type":"bar"},{"alignmentgroup":"True","hovertemplate":"\u003cb\u003e%{data.name}\u003c\u002fb\u003e\u003cbr\u003eYear: %{x}\u003cbr\u003eYoY Growth: \u003cb\u003e%{y:+.1f}%\u003c\u002fb\u003e\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"Volkswagen Group","marker":{"color":"#00A8A8","pattern":{"shape":""},"line":{"color":"#ffffff","width":0.8}},"name":"Volkswagen Group","offsetgroup":"Volkswagen Group","orientation":"v","showlegend":true,"textposition":"auto","x":{"dtype":"i2","bdata":"5QfmB+cH6AfpBw=="},"xaxis":"x","y":{"dtype":"f8","bdata":"xZZ5D1\u002fjV0BYR7IOvFE6QKBO21NeZEFAEybb6QQUC8DnEuFJQfI\u002fQA=="},"yaxis":"y","type":"bar"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"Year"},"tickmode":"linear","dtick":1,"gridcolor":"#f1f5f9"},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"Year-over-Year Growth Rate (%)"},"ticksuffix":"%","gridcolor":"#f1f5f9","zeroline":true,"zerolinewidth":1.5,"zerolinecolor":"#94a3b8"},"legend":{"title":{"text":"company"},"tracegroupgap":0,"font":{"size":11},"orientation":"h","yanchor":"bottom","y":1.02,"xanchor":"center","x":0.5,"bgcolor":"rgba(255,255,255,0.85)","bordercolor":"#e2e8f0","borderwidth":1},"margin":{"t":35,"l":60,"r":25,"b":45},"barmode":"group","font":{"family":"Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, sans-serif","size":12,"color":"#334155"},"hoverlabel":{"font":{"size":12,"color":"#ffffff"},"bgcolor":"#1e293b"},"autosize":true,"paper_bgcolor":"rgba(0,0,0,0)","plot_bgcolor":"rgba(0,0,0,0)","height":380,"showlegend":true,"bargap":0.25,"bargroupgap":0.08},                        {"responsive": true, "displayModeBar": false}                    )                };            </script>        </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="insight-box">
+            <h4>📈 Competitive Market Share & Growth Analysis</h4>
+            <p>
+                <b>1. BYD's Hyper-Expansion:</b> Leveraging low-cost LFP Blade Batteries and rapid model iterations, BYD surged from 6.55% in 2020 to 16.12% in 2025 (+17.2x delivery volume).<br>
+                <b>2. Tesla's Monopolistic Dilution:</b> Tesla's early market dominance (24.98% in 2020) normalized to 11.71% in 2025 as mainstream competition intensified.<br>
+                <b>3. Legacy OEM Stratification:</b> Volkswagen Group held legacy leadership (7.02%), followed by Hyundai-Kia Group (3.67%) and BMW Group (3.16%), effectively scaling premium and volume segments.
+            </p>
+        </div>
+    </div>
+
+    <!-- TAB 3: Battery Tech Strategy -->
+    <div id="tab-battery" class="tab-content">
+        <div class="dashboard-grid-single">
+            <div class="chart-card">
+                <div class="chart-card-header">
+                    <h2 class="chart-card-title">Automaker Battery Chemistry & Packaging Deployment Matrix</h2>
+                    <p class="chart-card-subtitle">Strategic Adoption of LFP, NCM, NCA, and Cell-to-Pack Blade Technologies</p>
+                </div>
+                <div class="chart-container">
+                    <div>                            <div id="8ad99c84-7140-4cbf-9542-090f771b58fa" class="plotly-graph-div" style="height:360px; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("8ad99c84-7140-4cbf-9542-090f771b58fa")) {                    Plotly.newPlot(                        "8ad99c84-7140-4cbf-9542-090f771b58fa",                        [{"colorscale":[[0.0,"#f8fafc"],[0.0,"#f8fafc"],[0.16666666666666666,"#E11D48"],[0.16666666666666666,"#E11D48"],[0.3333333333333333,"#7C3AED"],[0.3333333333333333,"#7C3AED"],[0.5,"#00A8A8"],[0.5,"#00A8A8"],[0.6666666666666666,"#00287A"],[0.6666666666666666,"#00287A"],[0.8333333333333334,"#000000"],[0.8333333333333334,"#000000"],[1.0,"#7F8C8D"],[1.0,"#7F8C8D"]],"hovertemplate":"\u003cb\u003eAutomaker:\u003c\u002fb\u003e %{y}\u003cbr\u003e\u003cb\u003eChemistry:\u003c\u002fb\u003e %{x}\u003cbr\u003e\u003cb\u003eStatus:\u003c\u002fb\u003e %{text}\u003cextra\u003e\u003c\u002fextra\u003e","showscale":false,"text":[["\u2713 Adopted","- Not Adopted","- Not Adopted","\u2713 Adopted"],["\u2713 Adopted","- Not Adopted","\u2713 Adopted","- Not Adopted"],["\u2713 Adopted","\u2713 Adopted","- Not Adopted","- Not Adopted"],["\u2713 Adopted","\u2713 Adopted","- Not Adopted","- Not Adopted"],["- Not Adopted","\u2713 Adopted","- Not Adopted","- Not Adopted"],["- Not Adopted","\u2713 Adopted","- Not Adopted","- Not Adopted"]],"textfont":{"color":"#1e293b","size":13},"texttemplate":"\u003cb\u003e%{text}\u003c\u002fb\u003e","x":["LFP (Lithium Iron Phosphate)","NCM (Nickel Cobalt Manganese)","NCA (Nickel Cobalt Aluminum)","Blade Battery (BYD CTP LFP)"],"xgap":6,"y":["BYD","Tesla Inc.","Volkswagen Group","Hyundai-Kia Group","BMW Group","Mercedes-Benz Group"],"ygap":6,"z":[[1,0,0,1],[2,0,2,0],[3,3,0,0],[4,4,0,0],[0,5,0,0],[0,6,0,0]],"type":"heatmap"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"font":{"family":"Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, sans-serif","size":12,"color":"#334155"},"margin":{"l":155,"r":25,"t":40,"b":20},"legend":{"font":{"size":11},"orientation":"h","yanchor":"bottom","y":1.02,"xanchor":"center","x":0.5,"bgcolor":"rgba(255,255,255,0.85)","bordercolor":"#e2e8f0","borderwidth":1},"hoverlabel":{"font":{"size":12,"color":"#ffffff"},"bgcolor":"#1e293b"},"autosize":true,"paper_bgcolor":"rgba(0,0,0,0)","plot_bgcolor":"rgba(0,0,0,0)","height":360,"showlegend":false,"xaxis":{"tickfont":{"size":12,"color":"#1e293b"},"title":{"text":""},"side":"top"},"yaxis":{"tickfont":{"size":12,"color":"#1e293b"},"title":{"text":""},"autorange":"reversed"}},                        {"responsive": true, "displayModeBar": false}                    )                };            </script>        </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Battery Chemical Specs Detail Cards -->
+        <div class="chem-specs-grid">
+            <div class="chem-card">
+                <span class="chem-badge lfp">LFP (Lithium Iron Phosphate)</span>
+                <h4>Low Cost & Exceptional Thermal Stability</h4>
+                <ul>
+                    <li><b>Strengths:</b> Lowest raw material cost, superior fire safety, long cycle life (>3,000 cycles).</li>
+                    <li><b>Trade-offs:</b> Lower gravimetric energy density, cold weather performance degradation.</li>
+                    <li><b>Primary OEM Mix:</b> BYD (100%), Tesla (Standard RWD), Hyundai-Kia (Entry), VW Group.</li>
+                </ul>
+            </div>
+
+            <div class="chem-card">
+                <span class="chem-badge blade">Blade Battery</span>
+                <h4>BYD Proprietary Cell-to-Pack (CTP) LFP</h4>
+                <ul>
+                    <li><b>Architecture:</b> Direct structural integration boosts pack space utilization by 50%.</li>
+                    <li><b>Safety:</b> Passed rigorous nail penetration tests without thermal runaway.</li>
+                    <li><b>Primary OEM Mix:</b> BYD standard across entire vehicle portfolio.</li>
+                </ul>
+            </div>
+
+            <div class="chem-card">
+                <span class="chem-badge ncm">NCM (Nickel Cobalt Manganese)</span>
+                <h4>High Energy Density & Long Highway Range</h4>
+                <ul>
+                    <li><b>Strengths:</b> Premium energy density (250-300 Wh/kg), fast DC charging, cold tolerance.</li>
+                    <li><b>Trade-offs:</b> Vulnerability to commodity price spikes (Ni, Co), active thermal management required.</li>
+                    <li><b>Primary OEM Mix:</b> Hyundai-Kia (E-GMP 800V), VW Group, BMW Group, Mercedes-Benz.</li>
+                </ul>
+            </div>
+
+            <div class="chem-card">
+                <span class="chem-badge nca">NCA (Nickel Cobalt Aluminum)</span>
+                <h4>Maximum Specific Power & Acceleration</h4>
+                <ul>
+                    <li><b>Strengths:</b> Ultra-high specific power output, outstanding discharge rates for performance.</li>
+                    <li><b>Trade-offs:</b> Complex manufacturing, higher degradation sensitivity under high temperatures.</li>
+                    <li><b>Primary OEM Mix:</b> Tesla (Long Range & Performance trims).</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 4: Growth Rate Analysis (Graphs & Pivot Table) -->
+    <div id="tab-growth-analysis" class="tab-content">
+        <div class="dashboard-grid-1x2">
+            <div class="chart-card">
+                <div class="chart-card-header">
+                    <h2 class="chart-card-title">YoY Delivery Growth Trajectory (2021–2025)</h2>
+                    <p class="chart-card-subtitle">OEM Growth Profiles Benchmarked Against Global Market Growth (Dotted Line)</p>
+                </div>
+                <div class="chart-container">
+                    <div>                            <div id="f82cc523-d2a1-425e-986a-11b24593a5b0" class="plotly-graph-div" style="height:380px; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("f82cc523-d2a1-425e-986a-11b24593a5b0")) {                    Plotly.newPlot(                        "f82cc523-d2a1-425e-986a-11b24593a5b0",                        [{"hovertemplate":"\u003cb\u003eGlobal Market Benchmark\u003c\u002fb\u003e\u003cbr\u003eYear: %{x}\u003cbr\u003eAvg Growth: \u003cb\u003e%{y:+.1f}%\u003c\u002fb\u003e\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#64748b","dash":"dot","shape":"spline","width":3},"marker":{"size":8,"symbol":"diamond"},"mode":"lines+markers","name":"\ud83c\udf10 Global Market Benchmark","x":{"dtype":"i2","bdata":"5QfmB+cH6AfpBw=="},"y":{"dtype":"f8","bdata":"\u002f\u002f\u002f\u002f\u002f\u002f8\u002fYECFLGQhC1lNQDRixIgRIz5ARnkN5TWUL0BFF1100UU7QA=="},"type":"scatter"},{"hovertemplate":"\u003cb\u003eBYD\u003c\u002fb\u003e\u003cbr\u003eYear: %{x}\u003cbr\u003eYoY Growth: \u003cb\u003e%{y:+.1f}%\u003c\u002fb\u003e\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#E11D48","shape":"spline","width":2.8},"marker":{"line":{"color":"#ffffff","width":1.5},"size":7},"mode":"lines+markers","name":"BYD","x":{"dtype":"i2","bdata":"5QfmB+cH6AfpBw=="},"y":{"dtype":"f8","bdata":"5p0iDWAeYkBR77oeZQBnQCzh9UTQNVJAjLMHqLsmKECUFXk+F9w7QA=="},"type":"scatter"},{"hovertemplate":"\u003cb\u003eTesla Inc.\u003c\u002fb\u003e\u003cbr\u003eYear: %{x}\u003cbr\u003eYoY Growth: \u003cb\u003e%{y:+.1f}%\u003c\u002fb\u003e\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#7C3AED","shape":"spline","width":2.8},"marker":{"line":{"color":"#ffffff","width":1.5},"size":7},"mode":"lines+markers","name":"Tesla Inc.","x":{"dtype":"i2","bdata":"5QfmB+cH6AfpBw=="},"y":{"dtype":"f8","bdata":"iFS7x8vZVUC7QgNh5CtEQPI69I7V00JAkjOJCiZw8L9Yuw+3gMIgwA=="},"type":"scatter"},{"hovertemplate":"\u003cb\u003eVolkswagen Group\u003c\u002fb\u003e\u003cbr\u003eYear: %{x}\u003cbr\u003eYoY Growth: \u003cb\u003e%{y:+.1f}%\u003c\u002fb\u003e\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#00A8A8","shape":"spline","width":2.8},"marker":{"line":{"color":"#ffffff","width":1.5},"size":7},"mode":"lines+markers","name":"Volkswagen Group","x":{"dtype":"i2","bdata":"5QfmB+cH6AfpBw=="},"y":{"dtype":"f8","bdata":"xZZ5D1\u002fjV0BYR7IOvFE6QKBO21NeZEFAEybb6QQUC8DnEuFJQfI\u002fQA=="},"type":"scatter"},{"hovertemplate":"\u003cb\u003eHyundai-Kia Group\u003c\u002fb\u003e\u003cbr\u003eYear: %{x}\u003cbr\u003eYoY Growth: \u003cb\u003e%{y:+.1f}%\u003c\u002fb\u003e\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#00287A","shape":"spline","width":2.8},"marker":{"line":{"color":"#ffffff","width":1.5},"size":7},"mode":"lines+markers","name":"Hyundai-Kia Group","x":{"dtype":"i2","bdata":"5QfmB+cH6AfpBw=="},"y":{"dtype":"f8","bdata":"OI7jOI7jTEAdSLTC5kBhQHaUbl9ZvTlAFB4eHh4eHkDIYCB76cwoQA=="},"type":"scatter"},{"hovertemplate":"\u003cb\u003eBMW Group\u003c\u002fb\u003e\u003cbr\u003eYear: %{x}\u003cbr\u003eYoY Growth: \u003cb\u003e%{y:+.1f}%\u003c\u002fb\u003e\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#000000","shape":"spline","width":2.8},"marker":{"line":{"color":"#ffffff","width":1.5},"size":7},"mode":"lines+markers","name":"BMW Group","x":{"dtype":"i2","bdata":"5QfmB+cH6AfpBw=="},"y":{"dtype":"f8","bdata":"kGoImAanYEAtq7WkxO9aQN5\u002fwejRllJAy0fXIyPNKkCeKWeetAYNQA=="},"type":"scatter"},{"hovertemplate":"\u003cb\u003eMercedes-Benz Group\u003c\u002fb\u003e\u003cbr\u003eYear: %{x}\u003cbr\u003eYoY Growth: \u003cb\u003e%{y:+.1f}%\u003c\u002fb\u003e\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#7F8C8D","shape":"spline","width":2.8},"marker":{"line":{"color":"#ffffff","width":1.5},"size":7},"mode":"lines+markers","name":"Mercedes-Benz Group","x":{"dtype":"i2","bdata":"5QfmB+cH6AfpBw=="},"y":{"dtype":"f8","bdata":"ZmZmZmamWEDTjpa4tCNJQKIxeolio05AI\u002fvrVnUKGsClT\u002fqkT\u002fo4wA=="},"type":"scatter"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"font":{"family":"Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, sans-serif","size":12,"color":"#334155"},"margin":{"l":60,"r":25,"t":40,"b":45},"legend":{"font":{"size":11},"orientation":"h","yanchor":"bottom","y":1.02,"xanchor":"center","x":0.5,"bgcolor":"rgba(255,255,255,0.85)","bordercolor":"#e2e8f0","borderwidth":1},"hoverlabel":{"font":{"size":12,"color":"#ffffff"},"bgcolor":"#1e293b"},"autosize":true,"paper_bgcolor":"rgba(0,0,0,0)","plot_bgcolor":"rgba(0,0,0,0)","height":380,"showlegend":true,"xaxis":{"title":{"text":"Year"},"tickmode":"linear","dtick":1,"gridcolor":"#f1f5f9"},"yaxis":{"title":{"text":"YoY Growth Rate (%)"},"ticksuffix":"%","gridcolor":"#f1f5f9","zeroline":true,"zerolinewidth":1.5,"zerolinecolor":"#94a3b8","range":[-35,205]}},                        {"responsive": true, "displayModeBar": false}                    )                };            </script>        </div>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-card-header">
+                    <h2 class="chart-card-title">Annual Net Incremental Deliveries Added (2021–2025)</h2>
+                    <p class="chart-card-subtitle">Net Additional Vehicle Volume Delivered Over Prior Year (Units)</p>
+                </div>
+                <div class="chart-container">
+                    <div>                            <div id="fc35524a-e643-486e-9774-3777c6e99298" class="plotly-graph-div" style="height:380px; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("fc35524a-e643-486e-9774-3777c6e99298")) {                    Plotly.newPlot(                        "fc35524a-e643-486e-9774-3777c6e99298",                        [{"alignmentgroup":"True","hovertemplate":"\u003cb\u003e%{data.name}\u003c\u002fb\u003e\u003cbr\u003eYear: %{x}\u003cbr\u003eNet Deliveries Added: \u003cb\u003e%{y:+,.0f} units\u003c\u002fb\u003e\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"BMW Group","marker":{"color":"#000000","pattern":{"shape":""},"line":{"color":"#ffffff","width":0.8}},"name":"BMW Group","offsetgroup":"BMW Group","orientation":"v","showlegend":true,"textposition":"auto","x":{"dtype":"i2","bdata":"5QfmB+cH6AfpBw=="},"xaxis":"x","y":{"dtype":"f8","bdata":"AAAAAID37EAAAAAAwFH7QAAAAABglQNBAAAAAGCd6EAAAAAAADvOQA=="},"yaxis":"y","type":"bar"},{"alignmentgroup":"True","hovertemplate":"\u003cb\u003e%{data.name}\u003c\u002fb\u003e\u003cbr\u003eYear: %{x}\u003cbr\u003eNet Deliveries Added: \u003cb\u003e%{y:+,.0f} units\u003c\u002fb\u003e\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"BYD","marker":{"color":"#E11D48","pattern":{"shape":""},"line":{"color":"#ffffff","width":0.8}},"name":"BYD","offsetgroup":"BYD","orientation":"v","showlegend":true,"textposition":"auto","x":{"dtype":"i2","bdata":"5QfmB+cH6AfpBw=="},"xaxis":"x","y":{"dtype":"f8","bdata":"AAAAAIAsB0EAAAAA9AMiQQAAAAAEQSRBAAAAANA2B0EAAAAAKAMeQQ=="},"yaxis":"y","type":"bar"},{"alignmentgroup":"True","hovertemplate":"\u003cb\u003e%{data.name}\u003c\u002fb\u003e\u003cbr\u003eYear: %{x}\u003cbr\u003eNet Deliveries Added: \u003cb\u003e%{y:+,.0f} units\u003c\u002fb\u003e\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"Hyundai-Kia Group","marker":{"color":"#00287A","pattern":{"shape":""},"line":{"color":"#ffffff","width":0.8}},"name":"Hyundai-Kia Group","offsetgroup":"Hyundai-Kia Group","orientation":"v","showlegend":true,"textposition":"auto","x":{"dtype":"i2","bdata":"5QfmB+cH6AfpBw=="},"xaxis":"x","y":{"dtype":"f8","bdata":"AAAAAABk6UAAAAAAAO0HQQAAAACAPfVAAAAAAABA30AAAAAAoKvrQA=="},"yaxis":"y","type":"bar"},{"alignmentgroup":"True","hovertemplate":"\u003cb\u003e%{data.name}\u003c\u002fb\u003e\u003cbr\u003eYear: %{x}\u003cbr\u003eNet Deliveries Added: \u003cb\u003e%{y:+,.0f} units\u003c\u002fb\u003e\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"Mercedes-Benz Group","marker":{"color":"#7F8C8D","pattern":{"shape":""},"line":{"color":"#ffffff","width":0.8}},"name":"Mercedes-Benz Group","offsetgroup":"Mercedes-Benz Group","orientation":"v","showlegend":true,"textposition":"auto","x":{"dtype":"i2","bdata":"5QfmB+cH6AfpBw=="},"xaxis":"x","y":{"dtype":"f8","bdata":"AAAAAIAS6EAAAAAA4GDoQAAAAAAQU\u002fZAAAAAAACazsAAAAAAAHHrwA=="},"yaxis":"y","type":"bar"},{"alignmentgroup":"True","hovertemplate":"\u003cb\u003e%{data.name}\u003c\u002fb\u003e\u003cbr\u003eYear: %{x}\u003cbr\u003eNet Deliveries Added: \u003cb\u003e%{y:+,.0f} units\u003c\u002fb\u003e\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"Tesla Inc.","marker":{"color":"#7C3AED","pattern":{"shape":""},"line":{"color":"#ffffff","width":0.8}},"name":"Tesla Inc.","offsetgroup":"Tesla Inc.","orientation":"v","showlegend":true,"textposition":"auto","x":{"dtype":"i2","bdata":"5QfmB+cH6AfpBw=="},"xaxis":"x","y":{"dtype":"f8","bdata":"AAAAADimGkEAAAAAPA0XQQAAAAAoMh5BAAAAAEAl0sAAAAAAgE8CwQ=="},"yaxis":"y","type":"bar"},{"alignmentgroup":"True","hovertemplate":"\u003cb\u003e%{data.name}\u003c\u002fb\u003e\u003cbr\u003eYear: %{x}\u003cbr\u003eNet Deliveries Added: \u003cb\u003e%{y:+,.0f} units\u003c\u002fb\u003e\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"Volkswagen Group","marker":{"color":"#00A8A8","pattern":{"shape":""},"line":{"color":"#ffffff","width":0.8}},"name":"Volkswagen Group","offsetgroup":"Volkswagen Group","orientation":"v","showlegend":true,"textposition":"auto","x":{"dtype":"i2","bdata":"5QfmB+cH6AfpBw=="},"xaxis":"x","y":{"dtype":"f8","bdata":"AAAAAKADC0EAAAAAABr9QAAAAADASghBAAAAAAB92cAAAAAAgA0NQQ=="},"yaxis":"y","type":"bar"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"Year"},"tickmode":"linear","dtick":1,"gridcolor":"#f1f5f9"},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"Annual Net Volume Added (Units)"},"tickformat":"+,s","gridcolor":"#f1f5f9","zeroline":true,"zerolinewidth":1.5,"zerolinecolor":"#94a3b8"},"legend":{"title":{"text":"company"},"tracegroupgap":0,"font":{"size":11},"orientation":"h","yanchor":"bottom","y":1.02,"xanchor":"center","x":0.5,"bgcolor":"rgba(255,255,255,0.85)","bordercolor":"#e2e8f0","borderwidth":1},"margin":{"t":40,"l":70,"r":25,"b":45},"barmode":"group","font":{"family":"Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, sans-serif","size":12,"color":"#334155"},"hoverlabel":{"font":{"size":12,"color":"#ffffff"},"bgcolor":"#1e293b"},"autosize":true,"paper_bgcolor":"rgba(0,0,0,0)","plot_bgcolor":"rgba(0,0,0,0)","height":380,"showlegend":true,"bargap":0.22,"bargroupgap":0.06},                        {"responsive": true, "displayModeBar": false}                    )                };            </script>        </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pivot Summary Growth Table -->
+        <div class="table-responsive">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Automaker (OEM)</th>
+                        <th class="text-right">2020 Base</th>
+                        <th class="text-right">2021 (YoY)</th>
+                        <th class="text-right">2022 (YoY)</th>
+                        <th class="text-right">2023 (YoY)</th>
+                        <th class="text-right">2024 (YoY)</th>
+                        <th class="text-right">2025 (YoY)</th>
+                        <th class="text-right" style="background:#f1f5f9;">5-Yr Cumulative Net Volume (2020→2025)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+    <tr>
+        <td>
+            <span class="company-badge" style="border-left-color: #E11D48;">
+                <span class="company-dot" style="background-color: #E11D48;"></span>
+                <b>BYD</b>
+            </span>
+        </td>
+        <td class="text-right font-mono">130,970 units</td>
+    
+        <td class="text-right font-mono">
+            <div style="font-weight:600; color:#059669">+144.9%</div>
+            <div style="font-size:11px; color:#64748b;">(320,810)</div>
+        </td>
+        
+        <td class="text-right font-mono">
+            <div style="font-weight:600; color:#059669">+184.0%</div>
+            <div style="font-size:11px; color:#64748b;">(911,140)</div>
+        </td>
+        
+        <td class="text-right font-mono">
+            <div style="font-weight:600; color:#059669">+72.8%</div>
+            <div style="font-size:11px; color:#64748b;">(1,574,822)</div>
+        </td>
+        
+        <td class="text-right font-mono">
+            <div style="font-weight:600; color:#059669">+12.1%</div>
+            <div style="font-size:11px; color:#64748b;">(1,764,992)</div>
+        </td>
+        
+        <td class="text-right font-mono">
+            <div style="font-weight:600; color:#059669">+27.9%</div>
+            <div style="font-size:11px; color:#64748b;">(2,256,714)</div>
+        </td>
+        
+        <td class="text-right font-mono" style="background:#f8fafc; font-weight:700; color:#1e40af;">
+            +2,125,744 units<br>
+            <span style="font-size:11.5px; color:#475569;">(17.2x Expansion)</span>
+        </td>
+    </tr>
+    
+
+    <tr>
+        <td>
+            <span class="company-badge" style="border-left-color: #7C3AED;">
+                <span class="company-dot" style="background-color: #7C3AED;"></span>
+                <b>Tesla Inc.</b>
+            </span>
+        </td>
+        <td class="text-right font-mono">499,550 units</td>
+    
+        <td class="text-right font-mono">
+            <div style="font-weight:600; color:#059669">+87.4%</div>
+            <div style="font-size:11px; color:#64748b;">(936,172)</div>
+        </td>
+        
+        <td class="text-right font-mono">
+            <div style="font-weight:600; color:#059669">+40.3%</div>
+            <div style="font-size:11px; color:#64748b;">(1,313,851)</div>
+        </td>
+        
+        <td class="text-right font-mono">
+            <div style="font-weight:600; color:#059669">+37.7%</div>
+            <div style="font-size:11px; color:#64748b;">(1,808,581)</div>
+        </td>
+        
+        <td class="text-right font-mono">
+            <div style="font-weight:600; color:#dc2626">-1.0%</div>
+            <div style="font-size:11px; color:#64748b;">(1,790,000)</div>
+        </td>
+        
+        <td class="text-right font-mono">
+            <div style="font-weight:600; color:#dc2626">-8.4%</div>
+            <div style="font-size:11px; color:#64748b;">(1,640,000)</div>
+        </td>
+        
+        <td class="text-right font-mono" style="background:#f8fafc; font-weight:700; color:#1e40af;">
+            +1,140,450 units<br>
+            <span style="font-size:11.5px; color:#475569;">(3.3x Expansion)</span>
+        </td>
+    </tr>
+    
+
+    <tr>
+        <td>
+            <span class="company-badge" style="border-left-color: #00A8A8;">
+                <span class="company-dot" style="background-color: #00A8A8;"></span>
+                <b>Volkswagen Group</b>
+            </span>
+        </td>
+        <td class="text-right font-mono">231,600 units</td>
+    
+        <td class="text-right font-mono">
+            <div style="font-weight:600; color:#059669">+95.6%</div>
+            <div style="font-size:11px; color:#64748b;">(452,900)</div>
+        </td>
+        
+        <td class="text-right font-mono">
+            <div style="font-weight:600; color:#059669">+26.3%</div>
+            <div style="font-size:11px; color:#64748b;">(572,100)</div>
+        </td>
+        
+        <td class="text-right font-mono">
+            <div style="font-weight:600; color:#059669">+34.8%</div>
+            <div style="font-size:11px; color:#64748b;">(771,100)</div>
+        </td>
+        
+        <td class="text-right font-mono">
+            <div style="font-weight:600; color:#dc2626">-3.4%</div>
+            <div style="font-size:11px; color:#64748b;">(745,000)</div>
+        </td>
+        
+        <td class="text-right font-mono">
+            <div style="font-weight:600; color:#059669">+31.9%</div>
+            <div style="font-size:11px; color:#64748b;">(983,000)</div>
+        </td>
+        
+        <td class="text-right font-mono" style="background:#f8fafc; font-weight:700; color:#1e40af;">
+            +751,400 units<br>
+            <span style="font-size:11.5px; color:#475569;">(4.2x Expansion)</span>
+        </td>
+    </tr>
+    
+
+    <tr>
+        <td>
+            <span class="company-badge" style="border-left-color: #00287A;">
+                <span class="company-dot" style="background-color: #00287A;"></span>
+                <b>Hyundai-Kia Group</b>
+            </span>
+        </td>
+        <td class="text-right font-mono">90,000 units</td>
+    
+        <td class="text-right font-mono">
+            <div style="font-weight:600; color:#059669">+57.8%</div>
+            <div style="font-size:11px; color:#64748b;">(142,000)</div>
+        </td>
+        
+        <td class="text-right font-mono">
+            <div style="font-weight:600; color:#059669">+138.0%</div>
+            <div style="font-size:11px; color:#64748b;">(338,000)</div>
+        </td>
+        
+        <td class="text-right font-mono">
+            <div style="font-weight:600; color:#059669">+25.7%</div>
+            <div style="font-size:11px; color:#64748b;">(425,000)</div>
+        </td>
+        
+        <td class="text-right font-mono">
+            <div style="font-weight:600; color:#059669">+7.5%</div>
+            <div style="font-size:11px; color:#64748b;">(457,000)</div>
+        </td>
+        
+        <td class="text-right font-mono">
+            <div style="font-weight:600; color:#059669">+12.4%</div>
+            <div style="font-size:11px; color:#64748b;">(513,669)</div>
+        </td>
+        
+        <td class="text-right font-mono" style="background:#f8fafc; font-weight:700; color:#1e40af;">
+            +423,669 units<br>
+            <span style="font-size:11.5px; color:#475569;">(5.7x Expansion)</span>
+        </td>
+    </tr>
+    
+
+    <tr>
+        <td>
+            <span class="company-badge" style="border-left-color: #000000;">
+                <span class="company-dot" style="background-color: #000000;"></span>
+                <b>BMW Group</b>
+            </span>
+        </td>
+        <td class="text-right font-mono">44,531 units</td>
+    
+        <td class="text-right font-mono">
+            <div style="font-weight:600; color:#059669">+133.2%</div>
+            <div style="font-size:11px; color:#64748b;">(103,855)</div>
+        </td>
+        
+        <td class="text-right font-mono">
+            <div style="font-weight:600; color:#059669">+107.7%</div>
+            <div style="font-size:11px; color:#64748b;">(215,755)</div>
+        </td>
+        
+        <td class="text-right font-mono">
+            <div style="font-weight:600; color:#059669">+74.4%</div>
+            <div style="font-size:11px; color:#64748b;">(376,183)</div>
+        </td>
+        
+        <td class="text-right font-mono">
+            <div style="font-weight:600; color:#059669">+13.4%</div>
+            <div style="font-size:11px; color:#64748b;">(426,594)</div>
+        </td>
+        
+        <td class="text-right font-mono">
+            <div style="font-weight:600; color:#059669">+3.6%</div>
+            <div style="font-size:11px; color:#64748b;">(442,072)</div>
+        </td>
+        
+        <td class="text-right font-mono" style="background:#f8fafc; font-weight:700; color:#1e40af;">
+            +397,541 units<br>
+            <span style="font-size:11.5px; color:#475569;">(9.9x Expansion)</span>
+        </td>
+    </tr>
+    
+
+    <tr>
+        <td>
+            <span class="company-badge" style="border-left-color: #7F8C8D;">
+                <span class="company-dot" style="background-color: #7F8C8D;"></span>
+                <b>Mercedes-Benz Group</b>
+            </span>
+        </td>
+        <td class="text-right font-mono">50,000 units</td>
+    
+        <td class="text-right font-mono">
+            <div style="font-weight:600; color:#059669">+98.6%</div>
+            <div style="font-size:11px; color:#64748b;">(99,300)</div>
+        </td>
+        
+        <td class="text-right font-mono">
+            <div style="font-weight:600; color:#059669">+50.3%</div>
+            <div style="font-size:11px; color:#64748b;">(149,227)</div>
+        </td>
+        
+        <td class="text-right font-mono">
+            <div style="font-weight:600; color:#059669">+61.3%</div>
+            <div style="font-size:11px; color:#64748b;">(240,668)</div>
+        </td>
+        
+        <td class="text-right font-mono">
+            <div style="font-weight:600; color:#dc2626">-6.5%</div>
+            <div style="font-size:11px; color:#64748b;">(225,000)</div>
+        </td>
+        
+        <td class="text-right font-mono">
+            <div style="font-weight:600; color:#dc2626">-25.0%</div>
+            <div style="font-size:11px; color:#64748b;">(168,800)</div>
+        </td>
+        
+        <td class="text-right font-mono" style="background:#f8fafc; font-weight:700; color:#1e40af;">
+            +118,800 units<br>
+            <span style="font-size:11.5px; color:#475569;">(3.4x Expansion)</span>
+        </td>
+    </tr>
+    
+
+<tr style="background:#eff6ff; font-weight:600; border-top: 2px solid #93c5fd;">
+    <td><b>🌐 Global BEV Market Total</b></td>
+    <td class="text-right font-mono">2,000,000 units</td>
+
+    <td class="text-right font-mono">
+        <div style="font-weight:700; color:#1d4ed8;">+130.0%</div>
+        <div style="font-size:11px; color:#64748b;">(4,600,000)</div>
+    </td>
+    
+    <td class="text-right font-mono">
+        <div style="font-weight:700; color:#1d4ed8;">+58.7%</div>
+        <div style="font-size:11px; color:#64748b;">(7,300,000)</div>
+    </td>
+    
+    <td class="text-right font-mono">
+        <div style="font-weight:700; color:#1d4ed8;">+30.1%</div>
+        <div style="font-size:11px; color:#64748b;">(9,500,000)</div>
+    </td>
+    
+    <td class="text-right font-mono">
+        <div style="font-weight:700; color:#1d4ed8;">+15.8%</div>
+        <div style="font-size:11px; color:#64748b;">(11,000,000)</div>
+    </td>
+    
+    <td class="text-right font-mono">
+        <div style="font-weight:700; color:#1d4ed8;">+27.3%</div>
+        <div style="font-size:11px; color:#64748b;">(14,000,000)</div>
+    </td>
+    
+    <td class="text-right font-mono" style="background:#dbeafe; font-weight:800; color:#1e40af;">
+        +12,000,000 units<br>
+        <span style="font-size:11.5px; color:#1e40af;">(7.0x Expansion)</span>
+    </td>
+</tr>
+
+                </tbody>
+            </table>
+        </div>
+
+        <div class="insight-box">
+            <h4>🚀 Strategic Insights on Pure BEV Market Dynamics</h4>
+            <p>
+                <b>• 2021–2022 Gold Rush:</b> BYD (+145% → +184%), Tesla (+87% → +40%), and Hyundai-Kia (+58% → +138%) outpaced global market growth during the early adoption boom.<br>
+                <b>• 2023–2024 EV Chasm & Correction:</b> Subsidies expired and early adopters saturated, moderating global market growth to +15% and causing temporary delivery contractions for Tesla (-1.0%) and Volkswagen (-3.4%).<br>
+                <b>• 2025 Strategic Rebound:</b> Mass-market LFP rollouts and new dedicated models enabled BYD (+27.9%), VW (+31.9%), and Hyundai-Kia (+12.4%) to lead the market recovery.
+            </p>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Tab switching logic with automatic Plotly resize trigger
+    function switchTab(tabId, btn) {
+        document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+
+        const targetTab = document.getElementById(tabId);
+        if (targetTab) {
+            targetTab.classList.add('active');
+        }
+        if (btn) {
+            btn.classList.add('active');
+        }
+
+        // Trigger resize so newly visible tab charts scale properly
+        setTimeout(() => {
+            window.dispatchEvent(new Event('resize'));
+            document.querySelectorAll('.plotly-graph-div').forEach(el => {
+                if (window.Plotly && el) {
+                    Plotly.Plots.resize(el);
+                }
+            });
+        }, 50);
+    }
+
+    // Initial resize trigger on window load
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            window.dispatchEvent(new Event('resize'));
+            document.querySelectorAll('.plotly-graph-div').forEach(el => {
+                if (window.Plotly && el) {
+                    Plotly.Plots.resize(el);
+                }
+            });
+        }, 100);
+    });
+</script>
+</body>
+</html>
