@@ -25,15 +25,17 @@ The global automotive industry is undergoing its most turbulent structural trans
 2. **Empirically Validates Powertrain Diversification**: Investigates the economic, financial, and carbon abatement validity of **Toyota's Hybrid-First "Multi-Pathway"** strategy against pure-play BEV competitors.
 3. **Quantifies Macroeconomic & Policy Causal Drivers**: Combines **Panel Fixed-Effects Econometrics (Panel OLS, VAR)** and **Explainable Machine Learning (XGBoost + SHAP TreeExplainer)** across 3 major economic zones (**US, EU, CN**).
 4. **Stress-Tests Geopolitical & Trade Risks (2026–2035)**: Simulates regulatory whiplash (EU 2035 mandate delays), tariff escalation, supply chain decoupling, and power grid constraints, formulating a pre-emptive **Business Continuity Planning (BCP)** playbook for legacy automakers.
+5. **Audits State-Capitalist Absorption & Corporate Governance Safeguards**: Analyzes China's mercantilist **IDAR (Introduce, Digest, Absorb, Re-innovate)** strategy and outbound legal lockdowns, modeling **German Corporate Law (AktG §179)** voting dilution safeguards and actionable **Phased De-risking** protocols.
 
 ---
 
 ## 📊 2. Verified Data Provenance & Calibration
 
-All datasets across the 4 modules are calibrated with 100% fidelity against primary audited disclosures and benchmark institutions:
+All datasets across the 5 modules are calibrated with 100% fidelity against primary audited disclosures, statutory legal texts, and benchmark institutions:
 
 * **Primary OEM Financial & Delivery Reports**: SEC Form 10-K / 20-F, Quarterly Earnings Disclosures, and IR Press Releases (**Toyota Motor Corporation, Tesla Inc., BYD Company, Volkswagen Group, Hyundai-Kia Group, BMW Group, Mercedes-Benz Group**).
-* **International Energy Agency (IEA)**: *Global EV Outlook (2020–2025)* for global fleet sizes, penetration rates, and public/fast charger infrastructure densities.
+* **Statutory Laws & Regulatory Gazettes**: German Stock Corporation Act (**AktG §179**), German Securities Trading Act (WpHG), EU Official Journal, PRC Export Control Law, and PRC Data Security Law.
+* **International Energy Agency (IEA) & Industry Databases**: *Global EV Outlook (2020–2025)*, CPCA (China Passenger Car Association), and MarkLines production registries.
 * **Commodity Benchmark Pricing**: London Metal Exchange (LME) & Fastmarkets spot and contract prices for battery-grade Lithium Carbonate, Nickel, Cobalt, and Graphite.
 * **Macroeconomic & Policy Levers**: U.S. Federal Reserve Economic Data (FRED), European Central Bank (ECB), and official trade tariff schedules (U.S. Section 301, EU Countervailing Duties).
 
