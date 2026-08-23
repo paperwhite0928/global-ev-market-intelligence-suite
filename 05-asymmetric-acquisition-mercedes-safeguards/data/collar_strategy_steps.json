@@ -1,0 +1,56 @@
+{
+  "title": "Geely's 2018 Stealth Acquisition via Equity Collar Derivative Engineering",
+  "target": "Daimler AG (Mercedes-Benz Group)",
+  "dateExecuted": "February 23, 2018",
+  "acquiredStake": "9.69% (103,619,340 shares)",
+  "notionalCapital": "~$9.0 Billion (€7.3 Billion)",
+  "primaryArchitect": "Li Shufu / Zhejiang Geely Holding Group",
+  "financialIntermediaries": ["Morgan Stanley", "Bank of America Merrill Lynch"],
+  "spvEntity": "Tenaciou3 Prospect Investment Limited (incorporated in Hong Kong / offshore)",
+  "stages": [
+    {
+      "step": 1,
+      "phase": "Initial Friendly Rejection (Late 2017)",
+      "action": "Direct 5% New Share Request",
+      "mechanism": "Geely approached Daimler's management offering to buy newly issued shares at a discount to partner on EV & battery tech.",
+      "outcome": "Daimler rejected: 'We are satisfied with our existing shareholder structure and will not dilute existing owners. Shares can be bought on the open market.'",
+      "regulatoryTrigger": "None (No shares acquired)."
+    },
+    {
+      "step": 2,
+      "phase": "Offshore SPV & Intermediary Warehousing (Nov 2017 - Jan 2018)",
+      "action": "SPV 'Tenaciou3' & Synthetic Derivative Mandates",
+      "mechanism": "Geely established offshore SPV 'Tenaciou3 Prospect Investment Ltd'. Global banks (Morgan Stanley, BoA) systematically purchased physical Daimler shares and synthetic total return swaps (TRS) on secondary markets in small increments.",
+      "outcome": "Accumulated inventory across multiple prime brokerage trading books without crossing German individual reporting accounts.",
+      "regulatoryTrigger": "German WpHG disclosure triggers (3%, 5%) circumvented as ownership was held synthetically and dispersed across multiple banking legal entities."
+    },
+    {
+      "step": 3,
+      "phase": "Zero-Cost Collar Derivative Structure (Jan - Feb 2018)",
+      "action": "Financing & Hedging via Put/Call Options",
+      "mechanism": "Geely structured a Zero-Cost Collar with investment banks:\n1. Long Daimler Stock (~9.69%)\n2. Bought Put Options (Floor price protection at ~90-95% of current price)\n3. Sold Call Options (Capping upside at ~105-110% to finance the puts at zero net premium)\n4. Collateralized Margin Loan: Banks provided ~80-85% Loan-to-Value (LTV) non-recourse margin loan because downside risk was 100% eliminated by the put options.",
+      "outcome": "Geely only needed ~$1.0B–$1.5B in equity capital to control a $9.0B block of shares. Chinese state lenders / offshore lines covered the remainder.",
+      "regulatoryTrigger": "Economic risk shifted entirely to derivative market makers without triggering public disclosure prior to physical delivery settlement."
+    },
+    {
+      "step": 4,
+      "phase": "Overnight Voting Rights Conversion & Regulatory Blitz (Feb 23, 2018)",
+      "action": "Physical Exercise of Equity Swaps & WpHG Disclosure",
+      "mechanism": "Over a single weekend, Geely instructed intermediaries to exercise synthetic rights, convert all derivatives into direct physical voting equity under SPV Tenaciou3, and filed a mandatory notification with BaFin and Daimler.",
+      "outcome": "Daimler's board and German regulators were blindsided on Monday morning: Li Shufu became Daimler's largest single shareholder overnight with 9.69%.",
+      "regulatoryTrigger": "WpHG Section 33 notification filed at 9.69% in one jump, bypassing prior market warning windows."
+    }
+  ],
+  "regulatoryLoopholesExploited": [
+    {
+      "loophole": "Synthetic Swap & Delta Exemption",
+      "preFixLaw": "Old German WpHG / EU Transparency Directive did not enforce real-time aggregation of cash-settled equity derivatives with physical holdings below 3% reporting thresholds.",
+      "postFixReform": "BaFin tightened derivative disclosure rules in 2019/2020 requiring mandatory aggregation of cash-settled options, swaps, and synthetic collar holdings."
+    },
+    {
+      "loophole": "Foreign Direct Investment (FDI) Screening Gap",
+      "preFixLaw": "German Foreign Trade and Payments Act (AWV) screening threshold was set at 25% voting rights for non-EU investors in 2018.",
+      "postFixReform": "Germany progressively lowered the AWV screening trigger to 10% for critical infrastructure and key industrial technologies in 2020-2022."
+    }
+  ]
+}

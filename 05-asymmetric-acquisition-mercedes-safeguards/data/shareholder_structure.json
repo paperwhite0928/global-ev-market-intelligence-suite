@@ -1,0 +1,72 @@
+{
+  "totalSharesMillion": 1069.8,
+  "marketCapEurBillion": 72.4,
+  "combinedChineseStakePct": 19.67,
+  "shareholders": [
+    {
+      "id": "baic",
+      "name": "BAIC Group (Beijing State-Owned)",
+      "stakePct": 9.98,
+      "sharesMillion": 106.8,
+      "type": "Chinese State-Owned Enterprise (SOE)",
+      "color": "#e11d48",
+      "entryYear": 2019,
+      "peakYear": 2021,
+      "boardInfluence": "De facto #1 voting bloc, Beijing Benz JV partner",
+      "details": "Acquired initially 5% in 2019 to counter Geely, doubled to 9.98% in Dec 2021 just below the 10% foreign investment screening veto threshold."
+    },
+    {
+      "id": "geely",
+      "name": "Tenaciou3 Prospect / Li Shufu (Geely)",
+      "stakePct": 9.69,
+      "sharesMillion": 103.7,
+      "type": "Chinese Private Enterprise / SPV",
+      "color": "#f43f5e",
+      "entryYear": 2018,
+      "peakYear": 2018,
+      "boardInfluence": "Smart brand 50:50 JV partner, Horse Powertrain alliance",
+      "details": "Acquired overnight in Feb 2018 via SPV 'Tenaciou3 Prospect Investment Limited' and Morgan Stanley/BoA collar structure for ~$9.0B (€7.3B)."
+    },
+    {
+      "id": "kuwait",
+      "name": "Kuwait Investment Authority (KIA)",
+      "stakePct": 4.90,
+      "sharesMillion": 52.4,
+      "type": "Sovereign Wealth Fund",
+      "color": "#0284c7",
+      "entryYear": 1974,
+      "peakYear": 2019,
+      "boardInfluence": "Long-term anchor institutional investor",
+      "details": "Historic anchor investor since 1974, reduced from ~6.8% to 4.9% during capital rebalancing."
+    },
+    {
+      "id": "institutional",
+      "name": "Institutional Investors (BlackRock, Vanguard, etc.)",
+      "stakePct": 54.43,
+      "sharesMillion": 582.3,
+      "type": "Global Asset Managers",
+      "color": "#475569",
+      "entryYear": null,
+      "peakYear": null,
+      "boardInfluence": "Passive index funds & fragmented global asset managers",
+      "details": "Highly fragmented institutional free float across Europe and the US with low single-voter concentration."
+    },
+    {
+      "id": "retail",
+      "name": "Retail & Employee Shareholders",
+      "stakePct": 21.00,
+      "sharesMillion": 224.6,
+      "type": "Retail Free Float",
+      "color": "#334155",
+      "entryYear": null,
+      "peakYear": null,
+      "boardInfluence": "Dispersed German and international retail shareholders",
+      "details": "Standard individual holdings with minimal unified AGM voting presence."
+    }
+  ],
+  "agmAttendanceDynamics": {
+    "averageAgmAttendanceRatePct": 52.5,
+    "effectiveChineseVotingPowerPct": 37.47,
+    "explanation": "At standard German AGMs with ~50-55% attendance, a unified 19.67% voting bloc wields over 37% of present voting shares, granting effective blocking minority power over strategic resolutions."
+  }
+}

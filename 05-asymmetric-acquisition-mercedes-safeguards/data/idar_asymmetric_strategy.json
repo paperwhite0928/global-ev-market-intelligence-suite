@@ -1,0 +1,160 @@
+{
+  "title": "China's Asymmetric Openness & IDAR (Introduce, Digest, Absorb, Re-innovate) Strategy Framework",
+  "version": "2026.1",
+  "coreConcepts": {
+    "stateLedMercantilism": {
+      "name": "State-Led Mercantilism & State Capitalism",
+      "definition": "An economic model subordinating market mechanisms to state industrial and national security goals—leveraging global free trade outbound while imposing absolute state control inbound."
+    },
+    "idarStrategy": {
+      "name": "IDAR Strategy (Inward-Directed Assimilation & Re-export)",
+      "phases": [
+        {
+          "step": "Phase 1",
+          "name": "Digestion & Absorption",
+          "detail": "Inflow of Western advanced technology via mandatory joint ventures, blueprint assimilation, and process replication."
+        },
+        {
+          "step": "Phase 2",
+          "name": "Re-innovation & Domestic Scale",
+          "detail": "Complete component localization, indigenous platform engineering, scale optimization, and radical cost reduction."
+        },
+        {
+          "step": "Phase 3",
+          "name": "Global Outbound Expansion",
+          "detail": "Capturing international markets with state-subsidized price competitiveness and massive supply chain scale."
+        }
+      ]
+    },
+    "asymmetricOpenness": {
+      "name": "Asymmetric Openness (One-Way Market Access)",
+      "slogan": "Outbound Liberalization (Accessing Western Capital), Inbound Lockdown (Protecting Domestic Tech)",
+      "mechanism": "Exploits Western capital mobility and open IP transactions to acquire overseas assets, while completely ring-fencing domestic strategic industries through Foreign Investment Negative Lists."
+    }
+  },
+  "inboundMechanisms": [
+    {
+      "id": "inbound_1",
+      "mechanism": "1. Mandatory Technology Transfer (50:50 JV Requirement)",
+      "method": "Conditioned market access on establishing 50:50 joint ventures with domestic state-owned enterprises, compelling Western OEMs to transfer tooling, manufacturing know-how, and supplier networks.",
+      "cases": [
+        {
+          "sector": "Automotive",
+          "example": "Volkswagen-SAIC, Beijing-Benz (BBAC), BMW-Brilliance (BBA)",
+          "result": "Local joint venture partners fully absorbed 40 years of German manufacturing engineering, powertrain design, and Tier-1 quality management systems."
+        },
+        {
+          "sector": "High-Speed Rail",
+          "example": "Japan Shinkansen (Kawasaki HI) & Siemens ICE Technology Transfer",
+          "result": "Assimilated high-speed rail blueprints to develop the indigenous 'Fuxing (CR400)' trainsets, subsequently exporting them to Southeast Asia and Europe."
+        }
+      ]
+    },
+    {
+      "id": "inbound_2",
+      "mechanism": "2. State-Financed Outbound M&A (Exploiting Western Capital Openness)",
+      "method": "Deployed state-backed capital and sovereign subsidies to directly acquire critical Western robotics, display, and automotive pioneers.",
+      "cases": [
+        {
+          "company": "KUKA Robotics (Germany)",
+          "buyer": "Midea Group (2016 Acquisition)",
+          "impact": "Acquired Industry 4.0 proprietary motion control algorithms, robotics source code, and automated assembly IP."
+        },
+        {
+          "company": "Hydis (South Korea)",
+          "buyer": "BOE Technology Group (2003 Acquisition)",
+          "impact": "Absorbed Fringe Field Switching (FFS) wide-viewing angle LCD patents, enabling BOE to rise as the world's largest display manufacturer."
+        },
+        {
+          "company": "Volvo Cars (Sweden)",
+          "buyer": "Geely Holding Group (2010 Acquisition)",
+          "impact": "Absorbed CMA/SPA modular crash-safety platforms and ICE/EV architectures, creating the foundation for Geely, Lynk & Co, and Zeekr."
+        }
+      ]
+    },
+    {
+      "id": "inbound_3",
+      "mechanism": "3. Non-Tariff Barriers & Discriminatory Subsidies (Infant Industry Ring-Fencing)",
+      "method": "Imposed regulatory exclusions against foreign competitors until domestic champions closed the technology gap.",
+      "cases": [
+        {
+          "policy": "NEV Recommended Battery Whitelist (2016–2019)",
+          "target": "South Korean NCM Battery Manufacturers (LG Chem, Samsung SDI, SK On)",
+          "impact": "Disqualified vehicles equipped with Korean cells from EV purchase subsidies, granting CATL and BYD an indispensable 3-year protected monopoly to achieve global scale."
+        }
+      ]
+    }
+  ],
+  "outboundLegalStatutes": [
+    {
+      "id": "statute_1",
+      "name": "1. Catalog of Technologies Prohibited or Restricted from Export (MOFCOM / MOST)",
+      "enactment": "December 2023 Revision",
+      "coreContent": "Establishes a statutory list of strategic technologies prohibited from outbound licensing, cross-border data transfer, or foreign fab deployment without state authorization.",
+      "restrictedTech": [
+        {
+          "item": "Rare-Earth Permanent Magnet Smelting & NdFeB Processing",
+          "detail": "Strictly prohibits outbound transfer of rare-earth separation, purification, and high-performance sintered magnet manufacturing technology."
+        },
+        {
+          "item": "LFP Battery Cathode Synthesis & Lithium Processing",
+          "detail": "Restricts foreign licensing and equipment exports of continuous LFP chemical formulation and automated cell assembly lines."
+        },
+        {
+          "item": "Personalized Recommendation & AI Algorithms",
+          "detail": "Classified core recommendation neural network algorithms to block IP transfers during foreign asset sales (e.g., TikTok/ByteDance)."
+        }
+      ]
+    },
+    {
+      "id": "statute_2",
+      "name": "2. PRC Export Control Law (ECL)",
+      "enactment": "Effective December 1, 2020",
+      "coreContent": "Strictly regulates outbound transfers of dual-use raw materials and critical supply chain inputs on national security grounds.",
+      "restrictedTech": [
+        {
+          "item": "Synthetic & High-Purity Spherical Graphite (2023 Controls)",
+          "detail": "Imposed individual export license requirements on battery anode materials, directly constricting Western EV supply chains."
+        },
+        {
+          "item": "Gallium (Ga), Germanium (Ge), Antimony (Sb) (2023–2024 Controls)",
+          "detail": "Restricted global exports of critical semiconductor substrates, power electronics elements, and military optics minerals."
+        }
+      ]
+    },
+    {
+      "id": "statute_3",
+      "name": "3. Special Administrative Measures for Foreign Investment Access (Negative List)",
+      "enactment": "NDRC & MOFCOM Joint Decrees",
+      "coreContent": "Statutorily bans foreign ownership and controlling equity investments across key domestic industrial and resource sectors.",
+      "restrictedTech": [
+        {
+          "item": "Strategic Mineral Mining, Rare-Earth Processing, Telecom, Defense, Nuclear",
+          "detail": "Establishes structural asymmetry by blocking foreign acquisitions of domestic critical infrastructure while Chinese SOEs freely acquire Western peers."
+        }
+      ]
+    },
+    {
+      "id": "statute_4",
+      "name": "4. Data Security Law (DSL) & Revised Counter-Espionage Law",
+      "enactment": "Effective July 1, 2023",
+      "coreContent": "Classifies manufacturing telemetry, supply chain mapping, and software source code generated within China as protected state secrets, prohibiting cross-border transmission.",
+      "restrictedTech": [
+        {
+          "item": "Auditing & Supply Chain Due Diligence Raids (Bain, Mintz Group)",
+          "detail": "Criminalized independent Western supply chain investigations as espionage, severing Western corporate headquarters from local operational visibility."
+        }
+      ]
+    }
+  ],
+  "executiveTakeaways": {
+    "systemicWeaponization": {
+      "title": "Systemic Asymmetry as a Geopolitical Weapon",
+      "explanation": "Leveraged Western capital market openness and IP protections to acquire critical technologies, then fortified domestic infrastructure behind national security firewalls and export control statutes."
+    },
+    "deriskingRootCause": {
+      "title": "The Structural Imperative for Western De-risking",
+      "explanation": "US and European defensive trade and investment screening statutes (IRA, CHIPS Act, EU CRMA, FDI Screening) represent essential defensive safeguards against asymmetric technology capture and supply chain weaponization."
+    }
+  }
+}

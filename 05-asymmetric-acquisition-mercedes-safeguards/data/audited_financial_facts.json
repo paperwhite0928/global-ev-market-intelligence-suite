@@ -1,0 +1,177 @@
+{
+  "title": "Audited Financial & Regulatory Observed Facts (Layer 1 & 2)",
+  "version": "2026.1",
+  "credibilityTaxonomy": {
+    "TIER_1": {
+      "level": "Tier 1: Audited Statutory Filings",
+      "criteria": "Directly extracted from audited annual financial statements (10-K, 20-F, IFRS Notes) and statutory stock exchange regulatory filings (BaFin, SEC)."
+    },
+    "TIER_2": {
+      "level": "Tier 2: Official Government & Regulatory Statutes",
+      "criteria": "Official Journal of the European Union, German Federal Law Gazettes (AktG, WpHG, AWG), and National People's Congress legal statutes."
+    },
+    "TIER_3": {
+      "level": "Tier 3: Verified Industry Association Databases",
+      "criteria": "China Passenger Car Association (CPCA), MarkLines Automotive Database, BloombergNEF Battery Surveys."
+    },
+    "TIER_4": {
+      "level": "Tier 4: Analytical Estimates & Econometric Assumptions",
+      "criteria": "Aggregated CapEx estimates, synthetic derivative structural reconstructions, and multi-variable scenario models."
+    }
+  },
+  "oemFacts": {
+    "mercedesBenz": {
+      "name": "Mercedes-Benz Group AG",
+      "globalDeliveries2023": {
+        "value": 2491600,
+        "unit": "vehicles",
+        "tier": "TIER_1",
+        "source": "Mercedes-Benz Group AG Annual Report 2023, Note 34 Segment Reporting, p. 84",
+        "baseDate": "2023-12-31"
+      },
+      "chinaDeliveries2023": {
+        "value": 737200,
+        "unit": "passenger cars",
+        "shareOfGlobal": 29.58,
+        "tier": "TIER_1",
+        "source": "Mercedes-Benz Group AG Annual Report 2023, p. 84",
+        "baseDate": "2023-12-31"
+      },
+      "chinaEbitContribution2023": {
+        "valueEurB": 6.80,
+        "groupTotalEbitEurB": 19.70,
+        "ebitSharePct": 34.52,
+        "tier": "TIER_1",
+        "source": "Mercedes-Benz Group AG Annual Report 2023, Note 34 Segment Reporting",
+        "baseDate": "2023-12-31"
+      },
+      "flagshipConcentration": {
+        "sClassChinaSharePct": 38.0,
+        "maybachChinaSharePct": 45.0,
+        "tier": "TIER_1",
+        "source": "Mercedes-Benz Group AG FY2023 Investor Relations Presentation",
+        "baseDate": "2023-12-31"
+      },
+      "geelyShareholding": {
+        "votingRightsPct": 9.69,
+        "sharesCount": 103619340,
+        "acquisitionEntity": "Tenaciou3 Prospect Investment Limited (Hong Kong)",
+        "instrument": "Equity swaps & zero-cost collar derivatives via Morgan Stanley / Bank of America Merrill Lynch",
+        "tier": "TIER_1",
+        "source": "BaFin Voting Rights Disclosure under §33 WpHG (2018-02-23)",
+        "baseDate": "2018-02-23"
+      },
+      "baicShareholding": {
+        "votingRightsPct": 9.98,
+        "acquisitionEntity": "Investment Projects BMH GmbH (BAIC Group subsidiary)",
+        "regulatoryContext": "Positioned intentionally below the 10.0% statutory threshold of the German Foreign Trade Act (AWV)",
+        "tier": "TIER_1",
+        "source": "Mercedes-Benz Group AG Official IR Voting Rights Announcement",
+        "baseDate": "2021-12-13"
+      },
+      "combinedChineseStake": {
+        "exactPct": 19.67,
+        "kuwaitIaStakePct": 4.90,
+        "freeFloatPct": 75.43,
+        "tier": "TIER_1",
+        "source": "Mercedes-Benz Group AG Shareholder Structure Register",
+        "baseDate": "2024-H1"
+      }
+    },
+    "volkswagenGroup": {
+      "name": "Volkswagen AG",
+      "chinaDeliveriesPeak": {
+        "value": 4207000,
+        "year": "2018",
+        "shareOfGlobal": 38.9,
+        "tier": "TIER_1",
+        "source": "Volkswagen AG Annual Report 2018, Deliveries to Customers, p. 102",
+        "baseDate": "2018-12-31"
+      },
+      "chinaDeliveries2023": {
+        "value": 3236100,
+        "groupGlobal2023": 9239500,
+        "shareOfGlobal": 35.02,
+        "contractionFromPeakPct": -23.08,
+        "tier": "TIER_1",
+        "source": "Volkswagen AG Annual Report 2023, Financial Highlights, p. 112",
+        "baseDate": "2023-12-31"
+      },
+      "cariadLosses": {
+        "loss2022EurB": -2.068,
+        "loss2023EurB": -2.392,
+        "cumulativeLossEurB": -6.14,
+        "tier": "TIER_1",
+        "source": "Volkswagen AG Annual Report 2023, Segment Reporting: CARIAD, p. 114",
+        "baseDate": "2023-12-31"
+      },
+      "xpengTransaction": {
+        "purchaseConsiderationUsdM": 705.0,
+        "sharesAcquired": 94079255,
+        "shareClass": "Class A Ordinary Shares ($15.00 per ADS)",
+        "equityStakePct": 4.99,
+        "purpose": "Strategic minority investment & CEA Zonal E/E Architecture Master Agreement",
+        "tier": "TIER_1",
+        "source": "SEC Form 6-K XPENG Inc. (NYSE: XPEV) Closing Disclosure",
+        "baseDate": "2023-12-06"
+      }
+    },
+    "bmwGroup": {
+      "name": "BMW Group AG",
+      "chinaDeliveriesPeak": {
+        "value": 846237,
+        "year": "2021",
+        "shareOfGlobal": 33.58,
+        "tier": "TIER_1",
+        "source": "BMW Group Annual Report 2021, Delivery Figures, p. 88",
+        "baseDate": "2021-12-31"
+      },
+      "chinaDeliveries2023": {
+        "value": 824932,
+        "groupGlobal2023": 2555341,
+        "shareOfGlobal": 32.28,
+        "tier": "TIER_1",
+        "source": "BMW Group Annual Report 2023, Automotive Segment Report, p. 94",
+        "baseDate": "2023-12-31"
+      },
+      "bbaAcquisition": {
+        "initialStakePct": 50.0,
+        "acquiredStakePct": 25.0,
+        "postDealStakePct": 75.0,
+        "purchaseConsiderationEurB": 3.73,
+        "effectiveDate": "2022-02-11",
+        "tier": "TIER_1",
+        "source": "BMW Group Annual Report 2022, Note 3: BBA Full Consolidation, p. 142",
+        "baseDate": "2022-02-11"
+      },
+      "exportModel": {
+        "model": "BMW iX3 (G08 BEV)",
+        "productionPlant": "Shenyang Dadong / Tiexi Plants (China exclusive)",
+        "destination": "Europe, Asia-Pacific, Global Export",
+        "annualExportVolumeEstimate": 32000,
+        "tier": "TIER_3",
+        "source": "MarkLines Global Production & Export Tracker 2023–2024",
+        "baseDate": "2024-H1"
+      },
+      "euCountervailingDutyRate": {
+        "provisionalRatePct": 21.3,
+        "definitiveRatePct": 20.7,
+        "regulation": "Commission Implementing Regulation (EU) 2024/2754",
+        "category": "Cooperating sampled producers (BMW Brilliance Automotive Ltd.)",
+        "tier": "TIER_2",
+        "source": "Official Journal of the European Union, L Series (2024-10-29)",
+        "baseDate": "2024-10-29"
+      }
+    }
+  },
+  "triadAggregateBaseline": {
+    "globalRevenueEurB": 380.0,
+    "globalEbitEurB": 36.5,
+    "chinaEbitEurB": 12.8,
+    "chinaEbitSharePct": 35.07,
+    "groupEbitMarginPct": 9.61,
+    "source": "Aggregated from Mercedes (€19.7B EBIT), VW (€22.6B EBIT adjusted), BMW (€17.1B EBIT) 2023 financial reports deducting inter-company eliminations",
+    "tier": "TIER_1",
+    "baseDate": "2023-12-31"
+  }
+}

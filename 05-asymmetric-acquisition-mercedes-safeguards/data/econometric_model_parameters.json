@@ -1,0 +1,64 @@
+{
+  "title": "Layer 3 Econometric Model Parameters & Microeconomic Formulas",
+  "version": "2026.1",
+  "methodology": "Disaggregated microeconomic cost accounting and corporate voting power elasticity model under German Aktiengesetz §179 and EU Regulation 2024/2754.",
+  "tariffModel": {
+    "description": "Countervailing duty financial impact on reverse-exported BEVs into the European Union",
+    "parameters": {
+      "defaultExposedExportUnits": 32000,
+      "exposedExportUnitsRange": [10000, 80000],
+      "customsValuationEur": 42500,
+      "defaultTariffPassThroughRate": 0.30,
+      "demandPriceElasticity": -1.40,
+      "averageGrossMarginPct": 0.18,
+      "oemDutySchedules": {
+        "bmwBba": { "name": "BMW Brilliance (BBA)", "ratePct": 20.7, "source": "Regulation (EU) 2024/2754 definitive rate" },
+        "geelyGroup": { "name": "Geely Group (Smart/Polestar/Volvo)", "ratePct": 18.8, "source": "Regulation (EU) 2024/2754 definitive rate" },
+        "bydAuto": { "name": "BYD Auto", "ratePct": 17.0, "source": "Regulation (EU) 2024/2754 definitive rate" },
+        "saicMotor": { "name": "SAIC Motor (MG)", "ratePct": 35.3, "source": "Regulation (EU) 2024/2754 definitive rate" },
+        "nonCooperating": { "name": "Other Non-Cooperating Producers", "ratePct": 35.3, "source": "Regulation (EU) 2024/2754 definitive rate" }
+      }
+    },
+    "equation": "Delta_EBIT_Tariff = V_export * P_customs * tau * (1 - alpha) + V_export * (tau * alpha * |epsilon|) * (P_customs * gross_margin)"
+  },
+  "batteryCostModel": {
+    "description": "Non-China battery mineral refining and IRA/CRMA local content compliance cost penalty",
+    "parameters": {
+      "defaultExposedBevVolume": 1200000,
+      "exposedBevVolumeRange": [500000, 2500000],
+      "batteryPackCapacityKwh": 82.0,
+      "baseCellCostUsdPerKwh": 128.0,
+      "usdEurExchangeRate": 1.08,
+      "defaultMineralCostPremiumPct": 20.0,
+      "mineralCostPremiumRange": [5.0, 40.0]
+    },
+    "equation": "Delta_Cost_Battery_Total = V_BEV * ((Pack_kWh * Base_Cost_USD * (Premium_Pct / 100)) / USD_EUR_FX)"
+  },
+  "chinaShockModel": {
+    "description": "Domestic Chinese market contraction and price war impact on JV equity earnings and dividends",
+    "parameters": {
+      "triadChinaEbitBaseEurB": 12.8,
+      "mercedesChinaEbitBaseEurB": 6.80,
+      "vwChinaEbitBaseEurB": 4.10,
+      "bmwChinaEbitBaseEurB": 1.90,
+      "operatingLeverageFactor": 1.25,
+      "defaultVolumeShockPct": 15.0,
+      "volumeShockRange": [5.0, 50.0]
+    },
+    "equation": "Delta_EBIT_China = China_EBIT_Base * (Volume_Shock_Pct / 100) * Operating_Leverage"
+  },
+  "governanceAktgModel": {
+    "description": "German Stock Corporation Act (§179 AktG) 75% Supermajority & Blocking Minority Voting Power Engine",
+    "parameters": {
+      "initialChineseStakePct": 19.67,
+      "initialAlliedStakePct": 35.0,
+      "initialFreeFloatPct": 45.33,
+      "chineseTurnoutRatePct": 100.0,
+      "defaultAlliedTurnoutRatePct": 75.0,
+      "defaultFreeFloatTurnoutRatePct": 38.0,
+      "supermajorityVetoThresholdPct": 25.000000,
+      "simpleMajorityThresholdPct": 50.000000
+    },
+    "equation": "Total_Turnout = S_cn * T_cn + S_allied * T_allied + S_float * T_float; Effective_Power_CN = (S_cn * T_cn) / Total_Turnout"
+  }
+}

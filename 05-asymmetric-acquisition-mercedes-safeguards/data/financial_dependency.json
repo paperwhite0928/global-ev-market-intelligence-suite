@@ -1,0 +1,129 @@
+{
+  "unitSales2023": {
+    "globalTotal": 2491600,
+    "regions": [
+      {
+        "region": "China (Mainland)",
+        "units": 737200,
+        "sharePct": 29.59,
+        "localBuiltBeijingBenz": 563000,
+        "importedUnits": 174200,
+        "flagshipConcentration": "38% of global S-Class, 45% of global Maybach deliveries",
+        "ebitContributionEurBillion": 6.8,
+        "ebitSharePct": 34.5
+      },
+      {
+        "region": "Europe (incl. Germany)",
+        "units": 659400,
+        "sharePct": 26.46,
+        "localBuilt": 659400,
+        "importedUnits": 0,
+        "flagshipConcentration": "Balanced C/E-Class, Compacts & Vans",
+        "ebitContributionEurBillion": 5.1,
+        "ebitSharePct": 25.9
+      },
+      {
+        "region": "North America (US & Canada)",
+        "units": 346500,
+        "sharePct": 13.91,
+        "localBuilt": 280000,
+        "importedUnits": 66500,
+        "flagshipConcentration": "High SUV (GLE/GLS) and AMG mix",
+        "ebitContributionEurBillion": 4.6,
+        "ebitSharePct": 23.4
+      },
+      {
+        "region": "Rest of World (Asia-Pacific, LATAM, MEA)",
+        "units": 748500,
+        "sharePct": 30.04,
+        "localBuilt": 120000,
+        "importedUnits": 628500,
+        "flagshipConcentration": "General mix & Mercedes-Benz Vans global sales",
+        "ebitContributionEurBillion": 3.2,
+        "ebitSharePct": 16.2
+      }
+    ]
+  },
+  "historicalTrend": [
+    {
+      "year": 2018,
+      "globalSalesK": 2382,
+      "chinaSalesK": 653,
+      "chinaSharePct": 27.4,
+      "groupRevenueEurB": 167.4,
+      "groupEbitEurB": 11.1,
+      "chinaEbitSharePct": 29.0
+    },
+    {
+      "year": 2019,
+      "globalSalesK": 2385,
+      "chinaSalesK": 693,
+      "chinaSharePct": 29.1,
+      "groupRevenueEurB": 172.7,
+      "groupEbitEurB": 10.3,
+      "chinaEbitSharePct": 31.5
+    },
+    {
+      "year": 2020,
+      "globalSalesK": 2164,
+      "chinaSalesK": 774,
+      "chinaSharePct": 35.8,
+      "groupRevenueEurB": 154.3,
+      "groupEbitEurB": 6.6,
+      "chinaEbitSharePct": 42.0
+    },
+    {
+      "year": 2021,
+      "globalSalesK": 2093,
+      "chinaSalesK": 758,
+      "chinaSharePct": 36.2,
+      "groupRevenueEurB": 133.9,
+      "groupEbitEurB": 16.0,
+      "chinaEbitSharePct": 38.0
+    },
+    {
+      "year": 2022,
+      "globalSalesK": 2044,
+      "chinaSalesK": 751,
+      "chinaSharePct": 36.7,
+      "groupRevenueEurB": 150.0,
+      "groupEbitEurB": 20.5,
+      "chinaEbitSharePct": 36.5
+    },
+    {
+      "year": 2023,
+      "globalSalesK": 2492,
+      "chinaSalesK": 737,
+      "chinaSharePct": 29.6,
+      "groupRevenueEurB": 153.2,
+      "groupEbitEurB": 19.7,
+      "chinaEbitSharePct": 34.5
+    },
+    {
+      "year": 2024,
+      "globalSalesK": 2390,
+      "chinaSalesK": 670,
+      "chinaSharePct": 28.0,
+      "groupRevenueEurB": 145.6,
+      "groupEbitEurB": 13.8,
+      "chinaEbitSharePct": 32.0
+    }
+  ],
+  "profitSensitivityMatrix": {
+    "chinaVolumeDrop10Pct": {
+      "lostRevenueEurB": 4.8,
+      "ebitErosionEurB": 1.9,
+      "groupMarginContractionBps": 115
+    },
+    "chinaVolumeDrop25Pct": {
+      "lostRevenueEurB": 12.0,
+      "ebitErosionEurB": 4.8,
+      "groupMarginContractionBps": 290
+    },
+    "chinaVolumeDrop50Pct": {
+      "lostRevenueEurB": 24.1,
+      "ebitErosionEurB": 9.6,
+      "groupMarginContractionBps": 580
+    }
+  }
+}

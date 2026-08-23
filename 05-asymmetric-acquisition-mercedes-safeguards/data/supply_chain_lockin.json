@@ -1,0 +1,54 @@
+{
+  "techAndSupplyChainLockin": [
+    {
+      "id": "smart_jv",
+      "project": "Smart Brand 50:50 Joint Venture",
+      "partner": "Geely Automobile Group",
+      "establishedYear": 2019,
+      "headquarters": "Ningbo, China",
+      "productionSite": "Xi'an, China (SEA Modular EV Architecture)",
+      "mechanism": "Mercedes-Benz transferred 50% equity of the iconic micro-car brand 'smart' into a joint venture with Geely. Vehicle engineering, battery packaging, and manufacturing were relocated 100% to Geely's SEA platform in China, while Mercedes retained only exterior/interior styling styling duties.",
+      "riskScore": "HIGH (8.5/10)",
+      "strategicConsequence": "Complete de-industrialization of Smart production in Europe (Hambach plant sold to Ineos); European brand identity fully dependent on Chinese hardware architecture and software stack."
+    },
+    {
+      "id": "horse_powertrain",
+      "project": "Horse Powertrain (CLA 4-Cylinder Hybrid Engines)",
+      "partner": "Geely + Renault Group (Horse Powertrain JV)",
+      "establishedYear": 2024,
+      "headquarters": "London / Global",
+      "productionSite": "China / Europe",
+      "mechanism": "For the next-generation Mercedes MMA platform (new CLA-Class compact luxury sedan), Mercedes-Benz entered contracts to source 4-cylinder hybrid gasoline engines developed and manufactured in partnership with Horse Powertrain (50:50 Geely-Renault JV with Saudi Aramco minority equity).",
+      "riskScore": "CRITICAL (9.2/10)",
+      "strategicConsequence": "Heart of Mercedes compact vehicle powertrain outsourced to Chinese-controlled joint venture; loss of European ICE/hybrid core manufacturing competency."
+    },
+    {
+      "id": "qianli_ad_telemetry",
+      "project": "Qianli Auto / Momenta Autonomous Driving & Telemetry Cloud",
+      "partner": "Momenta / Qianli (Geely Tech Ecosystem & Tencent Cloud)",
+      "establishedYear": 2023,
+      "headquarters": "Beijing / Suzhou, China",
+      "productionSite": "Integrated in Chinese Mercedes Navigation & L2+/L3 Urban AD",
+      "mechanism": "To compete with Chinese EV tech, Mercedes partnered with Chinese autonomous driving startup Momenta (backed by SAIC, Geely, Tencent) and localized Chinese data centers for urban AD navigation and high-definition mapping.",
+      "riskScore": "EXTREME (9.6/10)",
+      "strategicConsequence": "Vehicle telemetry, camera sensors, and driver behavioral data routed through Chinese domestic servers, falling under China's National Intelligence Law (Art. 7) and Data Security Law."
+    }
+  ],
+  "legalAndStateCapitalismFramework": {
+    "partyCommittees": {
+      "lawReference": "Company Law of the PRC (Art. 19 / 2023 Revision Art. 170) & CCP Constitution",
+      "mandate": "Requires any company in China (including foreign JVs like Beijing Benz) with more than 3 CCP members to establish a Party Committee. Party secretary must participate in major corporate decision-making before board review.",
+      "implication": "Beijing Benz and domestic Tier-1 suppliers are legally bound to align hiring, production pacing, and strategic direction with the Chinese Communist Party's 5-Year National Industrial Plans."
+    },
+    "nationalIntelligenceLaw": {
+      "lawReference": "National Intelligence Law of the PRC (2017) - Article 7",
+      "statuteQuote": "'Any organization or citizen shall support, assist, and cooperate with state intelligence work in accordance with the law, and keep confidential state intelligence work secrets known to them.'",
+      "implication": "If Chinese security agencies request automotive sensor logs, location tracking data, or source code from Qianli, Geely, or Beijing Benz, refusal is illegal under Chinese criminal law, creating massive cross-border espionage and GDPR compliance risks."
+    },
+    "dataSecurityLaw": {
+      "lawReference": "Data Security Law (2021) & Cross-Border Data Transfer Regulations",
+      "statuteQuote": "'Critical data and personal information generated in the PRC must be stored domestically and undergo CAC security assessment before outbound transfer.'",
+      "implication": "Western OEMs are legally prohibited from transferring Chinese R&D data or crash telemetry back to German headquarters without state censorship approval, effectively creating a severed, air-gapped technological split."
+    }
+  }
+}

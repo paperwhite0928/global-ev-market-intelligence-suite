@@ -1,0 +1,68 @@
+{
+  "description": "EU Policy Evaluation, Countervailing Tariff Flaws, and 3 Proposed Strategic Legislative Reforms",
+  "metadata": {
+    "sources": [
+      "European Parliament Directorate-General for External Policies (FDI Screening & Critical Raw Materials Audits)",
+      "Regulation (EU) 2024/1866 on Countervailing Measures on Battery Electric Vehicles",
+      "German Foreign Trade and Payments Act (Außenwirtschaftsgesetz - AWG) & AWV Screening Regulations",
+      "Centre for European Policy Studies (CEPS) Policy Brief on Automotive Data Sovereignty"
+    ],
+    "baseDate": "2024-Q3 Legislative Analysis",
+    "methodology": "Comparative legal and regulatory analysis of EU anti-subsidy duties, US IRA Section 30D FEOC rules, and Chinese National Intelligence Law jurisdictional scope.",
+    "confidenceScore": "A+ (Official EU Treaties, Regulations, and Member State Statutes)"
+  },
+  "flaws": {
+    "title": "Current EU Policy Flaws (Why Simple Tariffs Fail)",
+    "category": "VULNERABILITY AUDIT",
+    "badgeColor": "bg-rose-950 text-rose-300 border border-rose-800",
+    "points": [
+      {
+        "name": "Tariff Circumvention via CKD Assembly",
+        "detail": "Chinese OEMs bypass 21%–35% countervailing duties by establishing CKD/SKD assembly plants in Hungary, Spain, and Turkey, qualifying vehicles as EU-origin while keeping software, chips, and battery supply chains in China."
+      },
+      {
+        "name": "Reactive FDI Screening & Derivative Blindspots",
+        "detail": "Current German AWV (10%) and EU FDI screening triggers fail completely against synthetic equity derivatives (Zero-cost collars, Total Return Swaps) and multi-broker warehousing under 3% disclosure limits."
+      },
+      {
+        "name": "Zero Data & Telemetry Border Regulation",
+        "detail": "Connected vehicles embedded with Chinese sensor stacks and telemetry inverters operate on European roads without mandatory sovereign source-code or intelligence-jurisdiction auditing."
+      }
+    ]
+  },
+  "reforms": [
+    {
+      "id": "reform_1",
+      "title": "1. European IRA / Enhanced CRMA Production Incentives",
+      "category": "PRODUCTION INCENTIVES",
+      "badgeColor": "bg-emerald-950 text-emerald-300 border border-emerald-800",
+      "points": [
+        "Condition all EU EV purchase subsidies and municipal tax credits on a minimum 60% European/Allied component and mineral content (Non-FEOC compliance).",
+        "Provide direct CAPEX matching grants for cathode/anode gigafactories partnering exclusively with NATO-aligned Tier-1 battery specialists (Korean Big 3, European champions).",
+        "Establish capped industrial electricity tariffs for automotive-grade semiconductor foundries and mineral refining facilities located within the EU."
+      ]
+    },
+    {
+      "id": "reform_2",
+      "title": "2. Automotive Cyber & Data Border Tax",
+      "category": "NATIONAL SECURITY BORDER",
+      "badgeColor": "bg-sky-950 text-sky-300 border border-sky-800",
+      "points": [
+        "Mandatory sovereign cybersecurity certification for all connected vehicle software stacks, LiDAR/camera telemetry, and battery management systems.",
+        "Strict statutory ban on vehicles transmitting real-time sensor or telemetry data to entities legally bound by foreign intelligence cooperation laws (e.g. PRC Intelligence Law Art. 7).",
+        "Impose a punitive 'Data Border Levy' on foreign connected vehicle platforms that refuse third-party source-code escrow auditing."
+      ]
+    },
+    {
+      "id": "reform_3",
+      "title": "3. Mandatory Tech Reciprocity & Golden Shares",
+      "category": "EQUITY RECIPROCITY",
+      "badgeColor": "bg-amber-950 text-amber-300 border border-amber-800",
+      "points": [
+        "Enact statutory reciprocity: Prohibit foreign state-backed entities from acquiring or holding >10% in critical European tech/mobility assets unless identical reciprocal investment rights exist in the foreign jurisdiction.",
+        "Close WpHG / EU Transparency Directive loopholes by mandating immediate, real-time disclosure of all synthetic equity derivatives (swaps, collars) at a 3% threshold.",
+        "Legislative Golden Shares granting European national governments statutory veto power over hostile takeovers and forced technology transfers in core mobility/AI infrastructure."
+      ]
+    }
+  ]
+}

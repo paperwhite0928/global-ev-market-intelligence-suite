@@ -56,7 +56,7 @@ All datasets across the 4 modules are calibrated with 100% fidelity against prim
 
 ---
 
-## 📂 4. 4-Stage Project Architecture & Strategic Insights
+## 📂 4. 5-Stage Project Architecture & Strategic Insights
 
 ```text
 global-automotive-strategy-suite/
@@ -64,7 +64,8 @@ global-automotive-strategy-suite/
 ├── 01-global-bev-market-intelligence/      # 📊 Stage 1: Global Pure BEV Market Deliveries & Battery Strategy
 ├── 02-toyota-hybrid-multipathway-strategy/ # 🚘 Stage 2: Toyota Multi-Pathway Proof & 2026-2030 Forecasting Engine
 ├── 03-bev-adoption-drivers-econometrics/   # ⚡ Stage 3: 3-Region Panel Econometrics & XGBoost-SHAP Causal Platform
-└── 04-mobility-geopolitical-bcp-engine/    # 🛡️ Stage 4: 2026-2035 Geopolitical Risk Simulator & BCP Playbook
+├── 04-mobility-geopolitical-bcp-engine/    # 🛡️ Stage 4: 2026-2035 Geopolitical Risk Simulator & BCP Playbook
+└── 05-asymmetric-acquisition-mercedes-safeguards/ # 🏛️ Stage 5: Mercedes-Benz Case Study & Cross-Sector Safeguards
 ```
 
 ---
@@ -113,6 +114,19 @@ global-automotive-strategy-suite/
 
 ---
 
+### 🏛️ Stage 5: The German Auto Triad's China Trap — Asymmetric IDAR Absorption & Phased De-risking (2019–2035)
+* **Directory**: [`05-asymmetric-acquisition-mercedes-safeguards/`](./05-asymmetric-acquisition-mercedes-safeguards)
+* **Architecture**: React 18+ TypeScript Web Terminal, Streamlit Decision Engine (Port **8504**), ReportLab Vector PDF Generator, 20-page strategic whitepaper, and 10-slide board pitch deck.
+* **Key Strategic Takeaways**:
+  * **Empirical Delivery Collapse (2019–2025)**: German Triad deliveries plummeted by **-1.59M units (-28.1%)**, market share halved from **25.1% to 12.8%**, and China EBIT dropped **-48.0% (-€7.3B)**.
+  * **Asymmetric IDAR Model**: Inbound assimilation (forced JVs, state M&A, battery whitelists) contrasted with Outbound statutory lockdown (Export Control Law, Restricted Technology Catalog, Data Security Law).
+  * **Triad Encroachment**: Mercedes collar stake (19.67% equity / ~37.5% AGM vote), VW CARIAD failure (>€6B loss) forcing software subcontracting to XPENG CEA, and BMW Shenyang export trap subject to EU 20.7% duties.
+  * **AktG §179 Capital Safeguards & Phased De-risking**: 15% strategic dilution and proxy turnout mobilization (>=70% total / >=85% allied) reduces Chinese voting power to 24.43%, dismantling 25% blocking vetoes (*Sperrminorität*).
+  * **Universal Cross-Sector Playbook**: Codifies 4 universal defense protocols across **Automotive SDVs, Semiconductors & EDA, Battery Materials, and Biopharma/Genomics**.
+
+
+---
+
 ## 💻 5. Getting Started & Execution Guide
 
 ### ⚙️ Prerequisites & Environment Setup
@@ -149,6 +163,7 @@ Each application operates on its designated localhost port to enable simultaneou
 │ 02. Toyota Strategy    │ 02-toyota-hybrid-multipathway-strategy/   │ Port 8501    │ http://localhost:8501   │
 │ 03. Adoption Drivers   │ 03-bev-adoption-drivers-econometrics/     │ Port 8502    │ http://localhost:8502   │
 │ 04. Geopolitical BCP   │ 04-mobility-geopolitical-bcp-engine/      │ Port 8503    │ http://localhost:8503   │
+│ 05. Triad China Trap   │ 05-asymmetric-acquisition-mercedes-safe.. │ Port 8504    │ http://localhost:8504   │
 └────────────────────────┴───────────────────────────────────────────┴──────────────┴─────────────────────────┘
 ```
 
@@ -194,6 +209,18 @@ streamlit run app.py --server.port 8503
 
 ---
 
+#### 🏛️ 5. Run Stage 5: The German Auto Triad's China Trap (Port 8504)
+```powershell
+cd ../05-asymmetric-acquisition-mercedes-safeguards
+pip install -r requirements.txt
+streamlit run app.py --server.port 8504
+```
+> Access live dashboard at **`http://localhost:8504`**.  
+> *(Optional: Launch React terminal by running `npm install && npm run dev` on port 5175)*.
+
+
+---
+
 ## 📑 6. Complete Deliverable Artifacts Manifest
 
 ```text
@@ -220,11 +247,20 @@ streamlit run app.py --server.port 8503
 │   ├── package.json                         # Node Package Specification
 │   └── ev_driver_analysis/requirements.txt  # Dependencies
 │
-└── 04-mobility-geopolitical-bcp-engine/
-    ├── app.py                               # Geopolitical Risk Simulator (Port 8503)
-    ├── mobility_geopolitical_risk_whitepaper.md # 35-Page Strategic Consulting Whitepaper
-    ├── presentation_pitch_deck.md           # 12-Slide Executive Board Pitch Deck
-    └── requirements.txt                     # Dependencies
+├── 04-mobility-geopolitical-bcp-engine/
+│   ├── app.py                               # Geopolitical Risk Simulator (Port 8503)
+│   ├── mobility_geopolitical_risk_whitepaper.md # 35-Page Strategic Consulting Whitepaper
+│   ├── presentation_pitch_deck.md           # 12-Slide Executive Board Pitch Deck
+│   └── requirements.txt                     # Dependencies
+│
+└── 05-asymmetric-acquisition-mercedes-safeguards/
+    ├── app.py                               # Strategic Intelligence Terminal (Port 8504)
+    ├── src/ (App.tsx, components)           # React 18 + TypeScript Web Terminal
+    ├── data/ (shareholders, collar, etc.)   # JSON Datasets & Derivatives Flow
+    ├── docs/executive_whitepaper.md         # 20-Page Comprehensive Strategic Analysis
+    ├── docs/board_pitch_deck.md             # 10-Slide Executive Board Presentation Script
+    ├── package.json                         # Node Package Specification
+    └── requirements.txt                     # Python Dependencies
 ```
 
 ---

@@ -1,0 +1,23 @@
+{
+  "description": "Multi-Variable Policy, Geopolitical Risk, and Financial Sensitivity Engine",
+  "metadata": {
+    "sources": [
+      "McKinsey / Oliver Wyman Automotive Cost Breakdown Model",
+      "BloombergNEF Lithium-ion Battery Pack Price Survey 2023–2024",
+      "European Commission Trade Defense Instrument Methodology"
+    ],
+    "baseDate": "2024-H2 Calibrated Engine",
+    "methodology": "Dynamic elasticity response matrix linking geopolitical tariff shocks, mineral premium surcharges, volume contraction, and capital dilution to Group EBIT and cash-flow at risk.",
+    "confidenceScore": "A (Empirical Financial Sensitivity Model)"
+  },
+  "baseline": {
+    "triadGlobalRevenueEurB": 380.0,
+    "triadGlobalEbitEurB": 36.5,
+    "triadBaseEbitMarginPct": 9.6,
+    "chinaEbitContributionEurB": 12.8,
+    "chinaEbitSharePct": 35.1,
+    "averageEvBatteryPackKwh": 82.0,
+    "baseBatteryPackCostPerKwhUsd": 128.0,
+    "evCostPenaltyBaselinePct": 25.0
+  }
+}

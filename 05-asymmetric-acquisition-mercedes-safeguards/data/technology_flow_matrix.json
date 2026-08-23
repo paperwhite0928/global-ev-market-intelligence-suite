@@ -1,0 +1,108 @@
+{
+  "historicalVsPresent": {
+    "dimensions": [
+      {
+        "dimension": "Technology Flow Directionality",
+        "pastCooperation": "European OEMs ➔ Chinese Joint Ventures: One-way technology transfer (engine, transmission, and body stamping engineering).",
+        "presentCompetition": "Chinese domestic supply chain ➔ Domestic priority with strict export controls (LFP battery chemistry, smart cockpits, ADAS neural networks).",
+        "severity": "critical",
+        "severityTag": "🔴 Critical (Technological Reversal)",
+        "color": "#DC2626"
+      },
+      {
+        "dimension": "Core Transferred Domains",
+        "pastCooperation": "ICE powertrains, chassis tuning, manufacturing quality control (QC), and global crash-safety certification.",
+        "presentCompetition": "Centralized zonal E/E architectures, LFP/Sodium-ion cell electrochemistry, LiDAR sensor fusion, and autonomous telemetry data.",
+        "severity": "critical",
+        "severityTag": "🔴 Critical (Core Software/Battery Capture)",
+        "color": "#DC2626"
+      },
+      {
+        "dimension": "Corporate Governance & Bargaining Power",
+        "pastCooperation": "European OEMs commanded board majorities, brand licensing authority, and dividend distributions through technological superiority.",
+        "presentCompetition": "Chinese partners dominate software and battery supply chains, reducing Western OEMs to technological licensees.",
+        "severity": "critical",
+        "severityTag": "🔴 Critical (Loss of Governance Power)",
+        "color": "#DC2626"
+      },
+      {
+        "dimension": "Global Re-Export Dynamics",
+        "pastCooperation": "Domestic production was strictly earmarked for mainland sales; global exports were controlled by Western headquarters.",
+        "presentCompetition": "Mega-fabs in China (BMW Shenyang iX3, Tesla Shanghai, Volvo Chengdu) increasingly re-export finished vehicles into Europe.",
+        "severity": "moderate",
+        "severityTag": "🟠 Moderate (Re-Export Tariff Backfire)",
+        "color": "#F97316"
+      },
+      {
+        "dimension": "Legal & Regulatory Framework",
+        "pastCooperation": "Mandatory 50:50 JV rules and technology sharing under Foreign Investment Guidance Catalogs.",
+        "presentCompetition": "PRC Export Control Law, Data Security Law, and Anti-Espionage statutes statutorily prohibit outbound repatriation of advanced IP.",
+        "severity": "critical",
+        "severityTag": "🔴 Critical (Statutory Lockdown)",
+        "color": "#DC2626"
+      }
+    ]
+  },
+  "domainSpecificEvidence": [
+    {
+      "id": "domain-1",
+      "domain": "1. Body-in-White Engineering & Gigapress Tooling",
+      "europeStatus": "European OEMs maintain strong structural engineering, high-strength steel-aluminum bonding, and NVH acoustic tuning leadership.",
+      "chinaStatus": "Pioneered integrated high-pressure Giga-Casting, reducing manufacturing unit costs by 30% and drastically simplifying structural assembly.",
+      "flowDirection": "While China leads in rapid structural casting innovation, Europe retains leverage in premium chassis dynamics and crash safety.",
+      "leverageRetained": "European Leverage Retained",
+      "severity": "low",
+      "severityTag": "🟡 Low (European Engineering Retained)",
+      "color": "#EAB308",
+      "statusBadge": "European Lead Retained"
+    },
+    {
+      "id": "domain-2",
+      "domain": "2. Battery Chemistry & Cell Fabrication",
+      "europeStatus": "European gigafactory initiatives face delays (e.g., Northvolt financial restructuring), resulting in persistent reliance on imported cells.",
+      "chinaStatus": "CATL and BYD control over 85% of global LFP manufacturing and hold near-monopoly positions in mineral refining (Lithium 65%, Graphite 90%).",
+      "flowDirection": "German Triad EV production is structurally dependent on Chinese battery suppliers and mainland cell capacity.",
+      "leverageRetained": "Chinese Monopoly",
+      "severity": "critical",
+      "severityTag": "🔴 Critical (100% LFP / Mineral Dependency)",
+      "color": "#DC2626",
+      "statusBadge": "Chinese Supply Monopoly"
+    },
+    {
+      "id": "domain-3",
+      "domain": "3. Vehicle Software & Zonal E/E Architectures (SDV)",
+      "europeStatus": "In-house software restructuring at CARIAD (>€6B cumulative losses) caused vehicle launch delays across premium platforms.",
+      "chinaStatus": "XPENG centralized CEA zonal E/E architecture and Huawei HarmonyOS smart cockpits set regional benchmarks for software-defined vehicles.",
+      "flowDirection": "Volkswagen committed $705M to acquire an equity stake and license XPENG CEA architecture, reversing historical software directionality.",
+      "leverageRetained": "Reversed Licensing",
+      "severity": "critical",
+      "severityTag": "🔴 Critical (Software Sovereignty Ceded)",
+      "color": "#DC2626",
+      "statusBadge": "Chinese Software Inflow"
+    },
+    {
+      "id": "domain-4",
+      "domain": "4. Autonomous Driving Telemetry & Training Data",
+      "europeStatus": "GDPR compliance and privacy regulations constrain large-scale video ingestion for end-to-end AI training.",
+      "chinaStatus": "Over 10 million connected vehicles harvest real-world telemetry daily; Data Security Law statutorily bans outbound cross-border transfer.",
+      "flowDirection": "Mainland driving data cannot be transferred to European headquarters, necessitating bifurcated, isolated localized training clusters.",
+      "leverageRetained": "Data Localization Lock",
+      "severity": "critical",
+      "severityTag": "🔴 Critical (National Security Data Ring-Fence)",
+      "color": "#DC2626",
+      "statusBadge": "Outbound Data Banned"
+    },
+    {
+      "id": "domain-5",
+      "domain": "5. Industrial Robotics & Manufacturing Automation",
+      "europeStatus": "Siemens industrial automation, programmable logic controllers (PLCs), and precision machinery remain global leaders.",
+      "chinaStatus": "Following Midea's 2016 acquisition of KUKA, robotics IP and automated assembly systems were integrated into domestic battery and EV lines.",
+      "flowDirection": "Core robotics hardware IP was absorbed by Chinese capital, though European systems integrators retain process optimization know-how.",
+      "leverageRetained": "Shared Leverage",
+      "severity": "moderate",
+      "severityTag": "🟠 Moderate (Robotics IP Absorbed)",
+      "color": "#F97316",
+      "statusBadge": "Shared Automation Leverage"
+    }
+  ]
+}

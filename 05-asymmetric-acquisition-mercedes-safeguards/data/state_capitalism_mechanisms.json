@@ -1,0 +1,48 @@
+{
+  "title": "Chinese State Capitalism Institutional Architecture: The Corporate Objective Function & 6 Evidence Pillars",
+  "version": "2026.1",
+  "theoreticalModel": {
+    "concept": "State-Corporate Objective Function Co-Optimization",
+    "westernFreeMarketObjective": "Maximize Profit(t) = Revenue(t) - Cost(t)  [Single-agent short-term quarterly ROI maximization]",
+    "stateCapitalismObjective": "Maximize Utility = Profit(firm) + lambda * Strategic_National_Objective(state)",
+    "explanation": "Corporate strategy in state capitalism is not irrational price dumping, but a multi-variable optimization system where commercial profits are weighted alongside national strategic priorities (market dominance, technology assimilation, supply chain capture)."
+  },
+  "sixEvidencePillars": [
+    {
+      "id": "pillar_1",
+      "name": "1. National Industrial Blueprints",
+      "legalBasis": "Made in China 2025, 14th Five-Year Plan for New Energy Vehicle Industry Development (2021–2035)",
+      "mechanism": "Mandates target global market share thresholds and minimum 80% domestic supply chain localization for batteries, electric motors, power electronics, and connected vehicle platforms."
+    },
+    {
+      "id": "pillar_2",
+      "name": "2. State Policy Finance & Subsidized Capital",
+      "legalBasis": "National Integrated Circuit Industry Investment Fund (Big Fund), China Development Bank (CDB) concessionary loans, SASAC capitalization",
+      "mechanism": "Provides low-interest long-term financing and sovereign equity injections, insulating domestic champions from commercial margins and sustaining aggressive CapEx cycles during price wars."
+    },
+    {
+      "id": "pillar_3",
+      "name": "3. Upstream Mineral Supply Control",
+      "legalBasis": "National Strategic Resource Security Directives & Strategic Mineral Reserve Protocols (Lithium, Cobalt, Graphite, Rare Earths)",
+      "mechanism": "Subsidizes overseas mining acquisitions and grants domestic processing concessions, establishing monopoly control over global lithium refining (65%) and spherical graphite (90%)."
+    },
+    {
+      "id": "pillar_4",
+      "name": "4. Strategic Technology & Mineral Export Controls",
+      "legalBasis": "PRC Export Control Law (2020), Catalog of Technologies Prohibited or Restricted from Export (December 2023 Revision)",
+      "mechanism": "Prohibits outbound transfer of rare-earth separation, gallium/germanium refining, and LFP cathode formulations, preventing foreign JVs from repatriating critical process IP."
+    },
+    {
+      "id": "pillar_5",
+      "name": "5. Extraterritorial Data & Intelligence Regimes",
+      "legalBasis": "PRC National Intelligence Law Art. 7 (2017), Data Security Law (2021), Personal Information Protection Law (PIPL)",
+      "mechanism": "Compels domestic organizations to assist state intelligence services upon request and statutorily bans outbound transfer of automotive telemetry, requiring bifurcated domestic IT architectures."
+    },
+    {
+      "id": "pillar_6",
+      "name": "6. Government-JV Subsidy Ecosystem & Party Governance",
+      "legalBasis": "NEV Recommended Battery Whitelists, Municipal Land Concessions, PRC Company Law Art. 19 (Internal Party Committees)",
+      "mechanism": "Historically excluded foreign battery makers to incubate domestic champions (CATL/BYD), while embedding Party Committee oversight directly into corporate governance structures."
+    }
+  ]
+}

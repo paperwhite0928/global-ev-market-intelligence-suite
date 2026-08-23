@@ -1,0 +1,88 @@
+{
+  "description": "Universal Cross-Industry Institutional Safeguard Matrices for 4 Critical Strategic Advanced Sectors",
+  "metadata": {
+    "sources": [
+      "European Commission Critical Raw Materials Act (CRMA - Regulation EU 2024/1252)",
+      "European Chips Act (Regulation EU 2023/1781) & US CHIPS and Science Act",
+      "US Biosecure Act Legislative Framework & Critical Pharmaceuticals Reserve Audits",
+      "NATO Industrial Capability & Cyber Supply Chain Security Guidelines"
+    ],
+    "baseDate": "2025 Audited Defense Framework",
+    "methodology": "Systemic vulnerability mapping across 4 capital-intensive sectors analyzing single-nation sourcing dependency, intellectual property reverse-engineering risks, and extraterritorial data laws.",
+    "confidenceScore": "A+ (Official EU Industrial Regulations & NATO Strategic Directives)"
+  },
+  "sectors": [
+    {
+      "id": "automotive",
+      "sector": "Automotive & Intelligent Mobility (SDV)",
+      "icon": "🚗",
+      "color": "#38BDF8",
+      "border": "#0284C7",
+      "riskScore": 88,
+      "riskLevel": "CRITICAL RISK",
+      "vulnerability": "China market sales concentration >30%, flagship margin hostage risks, software stack dependence on Momenta/XPENG, and vehicle telemetry exfiltration exposure under PRC Art. 7.",
+      "chinaPlusOneTitle": "1. China+1 Sourcing & Platform Quotas",
+      "chinaPlusOne": "Enforce strict China+1 sourcing quotas: mandate a maximum 25% single-country BOM dependency for key vehicle platforms, power electronics, and sub-tier microcontrollers.",
+      "ipBlackBoxingTitle": "2. Intellectual Property (IP) Black-Boxing",
+      "ipBlackBoxing": "Provide only compiled binary firmware to Chinese JVs; strictly air-gap core SDV source code (MB.OS / Rivian-VW), neural network weights, and cryptographic keys inside European HSMs.",
+      "dataAirGapTitle": "3. Sovereign Data Air-Gapping",
+      "dataAirGap": "Complete physical & cryptographic air-gapping: European/US fleet telemetry isolated on NATO-certified sovereign cloud, legally preventing extraterritorial transfer under PRC Intelligence Law Art. 7.",
+      "governanceTitle": "4. Board-Level Geopolitical Risk Committee",
+      "governance": "Supervisory Board Geopolitical Risk Committee with statutory unilateral JV exit, asset buy-back rights, and AktG §179 capital safeguards against 25% blocking minority encroachment."
+    },
+    {
+      "id": "semiconductors",
+      "sector": "Semiconductors & EDA Design Tools",
+      "icon": "⚡",
+      "color": "#F59E0B",
+      "border": "#D97706",
+      "riskScore": 92,
+      "riskLevel": "EXTREME RISK",
+      "vulnerability": "Subsidized legacy node (28nm+) foundry dumping, mandatory IP disclosure pressures in mainland test centers, and weaponization of critical packaging choke-points.",
+      "chinaPlusOneTitle": "1. China+1 Sourcing & Fabrication Quotas",
+      "chinaPlusOne": "Mandate a minimum 40% wafer fabrication allocation to democratic semiconductor alliances (US, EU Chips Act hubs, Japan, Taiwan, and allied fabs).",
+      "ipBlackBoxingTitle": "2. Intellectual Property (IP) Black-Boxing",
+      "ipBlackBoxing": "Black-box proprietary RTL circuit designs and GDSII tape-out data; strictly prohibit joint EDA co-development and co-simulation in non-allied R&D hubs.",
+      "dataAirGapTitle": "3. Sovereign Data Air-Gapping",
+      "dataAirGap": "Enforce zero-trust architecture across offshore design centers with cryptographic prevention of outbound cloud schematic file transfers.",
+      "governanceTitle": "4. Board-Level Geopolitical Risk Committee",
+      "governance": "Mandate formal export control compliance and joint EU FDI/German AWG (Foreign Trade Act) reviews on all advanced packaging and back-end test joint ventures."
+    },
+    {
+      "id": "battery",
+      "sector": "Battery Materials & Energy Storage",
+      "icon": "🔋",
+      "color": "#10B981",
+      "border": "#059669",
+      "riskScore": 85,
+      "riskLevel": "HIGH VULNERABILITY",
+      "vulnerability": "Single-nation monopoly over upstream refining (Lithium 65%, Graphite 90%), cell export restriction risks, and remote telemetry exposure in smart grid BMS inverters.",
+      "chinaPlusOneTitle": "1. CRMA & IRA Multilateral Sourcing Quotas",
+      "chinaPlusOne": "Scale CRMA/IRA-compliant quotas: minimum 50% non-FEOC battery materials by 2026 scaling to 80% allied by 2030, leveraging PowerCo, Panasonic, and Korean Big 3 alliances.",
+      "ipBlackBoxingTitle": "2. Intellectual Property (IP) Black-Boxing",
+      "ipBlackBoxing": "Retain proprietary dry electrode coating, solid-state electrolyte formulations, and high-nickel cathode recipes in European/US trade secret vaults with zero technology transfer to JVs.",
+      "dataAirGapTitle": "3. Sovereign Data Air-Gapping",
+      "dataAirGap": "Battery Management System (BMS) firmware telemetry, cell health diagnostics, and smart grid inverters physically decoupled from Chinese server infrastructure.",
+      "governanceTitle": "4. Board-Level Geopolitical Risk Committee",
+      "governance": "Form 50:50 cell gigafactory JVs exclusively with allied Tier-1 battery specialists, backed by 10-year sovereign offtake agreements and critical mineral stockpiling."
+    },
+    {
+      "id": "biotech",
+      "sector": "Biotechnology & Pharmaceuticals",
+      "icon": "🧬",
+      "color": "#A855F7",
+      "border": "#7C3AED",
+      "riskScore": 80,
+      "riskLevel": "HIGH VULNERABILITY",
+      "vulnerability": "Active Pharmaceutical Ingredient (API) supply concentration >80%, forced genomic dataset requisition under national intelligence statutes, and bioreactor process IP exfiltration.",
+      "chinaPlusOneTitle": "1. Strategic API Reserves & Onshore Quotas",
+      "chinaPlusOne": "Strategic National Stockpile mandate: minimum 6-month onshore Active Pharmaceutical Ingredient (API) buffer reserve and 35% domestic manufacturing capacity.",
+      "ipBlackBoxingTitle": "2. Intellectual Property (IP) Black-Boxing",
+      "ipBlackBoxing": "Black-box mRNA sequence engineering, viral vector designs, and proprietary continuous bioreactor fermentation parameters under multi-layered cryptographic protection.",
+      "dataAirGapTitle": "3. Sovereign Genomic Data Air-Gapping",
+      "dataAirGap": "HIPAA & GDPR genomic air-gaps: all Western DNA/RNA patient sequencing datasets processed and stored exclusively on sovereign European/US on-premises servers.",
+      "governanceTitle": "4. Board-Level Geopolitical Risk Committee",
+      "governance": "Mandatory inclusion of irrevocable clinical trial license revocation clauses upon state regulatory interference or unauthorized Party Committee access."
+    }
+  ]
+}

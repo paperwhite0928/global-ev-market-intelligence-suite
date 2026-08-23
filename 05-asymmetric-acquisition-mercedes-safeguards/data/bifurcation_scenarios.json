@@ -1,0 +1,74 @@
+{
+  "metadata": {
+    "title": "German Auto Triad 3-Path Regulatory Bifurcation Scenarios & 2026-2035 10-Year Forecast",
+    "baseDate": "2025-12-31",
+    "forecastHorizon": "2026-2035",
+    "confidenceScore": "Tier 2: Econometric Projections"
+  },
+  "scenarios": {
+    "scenarioA": {
+      "id": "scenarioA",
+      "name": "Scenario A: Status Quo (Status Quo Dependency)",
+      "tag": "🔴 STATUS QUO DEPENDENCY (SEVERE CAPTURE)",
+      "color": "#F43F5E",
+      "summary": "Maintains existing joint ventures and shareholder configurations, relying on short-term dividends and low-cost Chinese components. Entrenches 25% blocking vetoes and cedes software and battery leadership, reducing Western OEMs to basic assembly subcontractors by 2035.",
+      "metrics": {
+        "ebitImpact": "4.2% Margin (Long-Term Structural Decline by 2035)",
+        "additionalCapex": "€5B (Minimal Western Rebalancing)",
+        "transitionTimeline": "0 Years (Transition Abandoned)",
+        "chinaRevenueContraction": "-5% to -10% (Gradual Share Attrition)",
+        "euProductionCostSurcharge": "+€0/unit (Short-Term Parity Maintained)",
+        "recoveredBargainingPower": "15 / 100 (Negligible)",
+        "chineseRetaliationRisk": "Low"
+      },
+      "strategicAssessment": "Preserves near-term cash flow and dividend remittances, but ensures long-term loss of software and battery autonomy, eroding premium brand equity by 2030."
+    },
+    "scenarioB": {
+      "id": "scenarioB",
+      "name": "Scenario B: Phased De-risking (Recommended Sweet Spot)",
+      "tag": "🟢 STRATEGIC SWEET SPOT (OPTIMAL ROBUSTNESS)",
+      "color": "#10B981",
+      "summary": "Executes 15% strategic capital dilution and mobilizes allied proxy turnout to achieve total AGM turnout >= 70.0% (or allied-only turnout >= 85.0%), dismantling 25% supermajority vetoes under German AktG §179. Defends high-margin luxury niches (S-Class, Maybach, Porsche) inside China while migrating global fleet volume to Korean battery Tier-1s and proprietary OS stacks (MB.OS, Rivian-VW).",
+      "metrics": {
+        "ebitImpact": "8.5% to 10.2% Margin (Long-Term Margin Expansion)",
+        "additionalCapex": "€18B to €25B (Allied Supply Chain Diversification)",
+        "transitionTimeline": "4 to 6 Years (Managed 2-Phase Rebalancing)",
+        "chinaRevenueContraction": "-15% to -20% (Volume Pruned, Luxury Protected)",
+        "euProductionCostSurcharge": "+€1,200 to +€1,800/unit (Temporary Transition Premium)",
+        "recoveredBargainingPower": "85 / 100 (Full Strategic Autonomy Restored)",
+        "chineseRetaliationRisk": "Medium (Offset by In-Country Asset Leverage)"
+      },
+      "strategicAssessment": "Absorbs short-term transition premiums to restore corporate governance and technological sovereignty, locking in long-term global premium market leadership by 2035."
+    },
+    "scenarioC": {
+      "id": "scenarioC",
+      "name": "Scenario C: Abrupt Decoupling (High-Risk Cliff-Edge)",
+      "tag": "🔴 HIGH-RISK CLIFF-EDGE (CRITICAL CRISIS)",
+      "color": "#6366F1",
+      "summary": "Immediate operational withdrawal and severing of Chinese supply chains. Eliminates €45.0B in cumulative sunk CapEx and €12.8B in annual JV dividend inflows, precipitating an operating margin collapse to 1.5% and causing catastrophic liquidity deficits across the German industrial base.",
+      "metrics": {
+        "ebitImpact": "1.5% to 3.0% Margin (Severe Deficits & Restructuring)",
+        "additionalCapex": "€40B+ (Emergency Accelerated Fab Build-out)",
+        "transitionTimeline": "1 to 2 Years (Severe Production Disruptions)",
+        "chinaRevenueContraction": "-70% to -100% (Asset Write-downs & Freezes)",
+        "euProductionCostSurcharge": "+€3,500 to +€5,000/unit (Emergency Logistics Premium)",
+        "recoveredBargainingPower": "95 / 100 (Complete Disconnection)",
+        "chineseRetaliationRisk": "High (Full Mineral & Component Embargoes)"
+      },
+      "strategicAssessment": "Achieves rapid technological disconnection at the cost of existential cash-flow crises, factory closures, and an estimated -1.8% GDP contraction across Germany."
+    }
+  },
+  "forecastTimeSeries2026_2035": [
+    { "year": 2025, "scenA_margin": 7.9, "scenB_margin": 8.3, "scenC_margin": 2.5, "scenA_share": 12.8, "scenB_share": 12.8, "scenC_share": 12.8, "scenA_batteryAutonomy": 15, "scenB_batteryAutonomy": 15, "scenC_batteryAutonomy": 15 },
+    { "year": 2026, "scenA_margin": 7.5, "scenB_margin": 7.8, "scenC_margin": 1.8, "scenA_share": 11.5, "scenB_share": 12.0, "scenC_share": 6.5, "scenA_batteryAutonomy": 16, "scenB_batteryAutonomy": 25, "scenC_batteryAutonomy": 40 },
+    { "year": 2027, "scenA_margin": 7.1, "scenB_margin": 8.0, "scenC_margin": 2.2, "scenA_share": 10.2, "scenB_share": 11.2, "scenC_share": 3.8, "scenA_batteryAutonomy": 18, "scenB_batteryAutonomy": 38, "scenC_batteryAutonomy": 65 },
+    { "year": 2028, "scenA_margin": 6.8, "scenB_margin": 8.4, "scenC_margin": 3.0, "scenA_share": 9.0, "scenB_share": 10.5, "scenC_share": 2.1, "scenA_batteryAutonomy": 20, "scenB_batteryAutonomy": 52, "scenC_batteryAutonomy": 80 },
+    { "year": 2029, "scenA_margin": 6.4, "scenB_margin": 8.8, "scenC_margin": 4.1, "scenA_share": 8.0, "scenB_share": 9.8, "scenC_share": 1.5, "scenA_batteryAutonomy": 22, "scenB_batteryAutonomy": 65, "scenC_batteryAutonomy": 88 },
+    { "year": 2030, "scenA_margin": 5.9, "scenB_margin": 9.2, "scenC_margin": 5.0, "scenA_share": 6.8, "scenB_share": 9.2, "scenC_share": 1.0, "scenA_batteryAutonomy": 24, "scenB_batteryAutonomy": 75, "scenC_batteryAutonomy": 92 },
+    { "year": 2031, "scenA_margin": 5.4, "scenB_margin": 9.5, "scenC_margin": 5.5, "scenA_share": 5.8, "scenB_share": 8.9, "scenC_share": 0.8, "scenA_batteryAutonomy": 26, "scenB_batteryAutonomy": 82, "scenC_batteryAutonomy": 95 },
+    { "year": 2032, "scenA_margin": 5.0, "scenB_margin": 9.8, "scenC_margin": 5.8, "scenA_share": 4.9, "scenB_share": 8.6, "scenC_share": 0.6, "scenA_batteryAutonomy": 28, "scenB_batteryAutonomy": 88, "scenC_batteryAutonomy": 97 },
+    { "year": 2033, "scenA_margin": 4.6, "scenB_margin": 10.0, "scenC_margin": 6.0, "scenA_share": 4.0, "scenB_share": 8.4, "scenC_share": 0.5, "scenA_batteryAutonomy": 30, "scenB_batteryAutonomy": 91, "scenC_batteryAutonomy": 98 },
+    { "year": 2034, "scenA_margin": 4.4, "scenB_margin": 10.1, "scenC_margin": 6.2, "scenA_share": 3.4, "scenB_share": 8.2, "scenC_share": 0.4, "scenA_batteryAutonomy": 32, "scenB_batteryAutonomy": 93, "scenC_batteryAutonomy": 99 },
+    { "year": 2035, "scenA_margin": 4.2, "scenB_margin": 10.2, "scenC_margin": 6.5, "scenA_share": 2.8, "scenB_share": 8.0, "scenC_share": 0.3, "scenA_batteryAutonomy": 35, "scenB_batteryAutonomy": 95, "scenC_batteryAutonomy": 100 }
+  ]
+}

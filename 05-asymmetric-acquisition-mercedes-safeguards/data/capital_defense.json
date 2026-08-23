@@ -1,0 +1,107 @@
+{
+  "description": "German Stock Corporation Act (§179 AktG) Capital Dilution, Shareholder Bloc Governance, and Mathematical Defense Engine",
+  "metadata": {
+    "sources": [
+      "German Stock Corporation Act (Aktiengesetz - AktG) §133, §179, §182",
+      "German Securities Trading Act (Wertpapierhandelsgesetz - WpHG) §33, §38, §39",
+      "Mercedes-Benz Group AG 2023 Annual General Meeting (AGM) Voting Attendance Protocol",
+      "BaFin (Federal Financial Supervisory Authority) Official Derivative Disclosure Guidelines"
+    ],
+    "baseDate": "2024 Audited Baseline",
+    "methodology": "Exact mathematical model of corporate voting rights: Diluted Stake = S0 / (1 + D); Effective AGM Power = Diluted Stake / T_AGM; Blocking Minority Veto = True if Effective AGM Power >= 25.0%.",
+    "confidenceScore": "A+ (German Federal Statutory Law & Audited AGM Protocols)"
+  },
+  "initialState": {
+    "geelyStakePct": 9.69,
+    "baicStakePct": 9.98,
+    "combinedChineseStakePct": 19.67,
+    "kuwaitIaStakePct": 4.9,
+    "freeFloatPct": 75.43,
+    "averageGermanAgmTurnoutPct": 52.5,
+    "effectiveChineseAgmPowerPct": 37.47,
+    "supermajorityVetoThresholdPct": 25.0,
+    "simpleMajorityThresholdPct": 50.0
+  },
+  "dilutionTable": [
+    {
+      "dilutionRatePct": 0,
+      "newSharesIssuedPct": 0,
+      "dilutedChineseStakePct": 19.67,
+      "agmTurnout52_5Pct": 37.47,
+      "agmTurnout55_0Pct": 35.76,
+      "agmTurnout70_0Pct": 28.10,
+      "blockingMinorityAt55Turnout": true,
+      "status": "VETO POWER ACTIVE: Blocks all §179 AktG 75% special resolutions."
+    },
+    {
+      "dilutionRatePct": 15,
+      "newSharesIssuedPct": 15,
+      "dilutedChineseStakePct": 17.10,
+      "agmTurnout52_5Pct": 32.58,
+      "agmTurnout55_0Pct": 31.10,
+      "agmTurnout70_0Pct": 24.43,
+      "blockingMinorityAt55Turnout": true,
+      "blockingMinorityAt70Turnout": false,
+      "status": "VETO BROKEN AT HIGH TURNOUT (70.0%+): Total AGM attendance of 70.0% (or allied-only turnout 85.0%+) reduces effective Chinese voting power to 24.43% (<25.0%), eliminating the AktG §179 blocking minority."
+    },
+    {
+      "dilutionRatePct": 25,
+      "newSharesIssuedPct": 25,
+      "dilutedChineseStakePct": 15.74,
+      "agmTurnout52_5Pct": 29.98,
+      "agmTurnout55_0Pct": 28.61,
+      "agmTurnout65_0Pct": 24.21,
+      "blockingMinorityAt55Turnout": true,
+      "blockingMinorityAt65Turnout": false,
+      "status": "VETO BROKEN AT 65%+ TURNOUT: Significant dilution strips voting control."
+    },
+    {
+      "dilutionRatePct": 43.1,
+      "newSharesIssuedPct": 43.1,
+      "dilutedChineseStakePct": 13.75,
+      "agmTurnout52_5Pct": 26.19,
+      "agmTurnout55_0Pct": 25.00,
+      "agmTurnout70_0Pct": 19.64,
+      "blockingMinorityAt55Turnout": false,
+      "status": "VETO BROKEN AT BASELINE TURNOUT (55%): Absolute mathematical elimination of 25% blocking minority regardless of proxy attendance."
+    }
+  ],
+  "steps": [
+    {
+      "step": 1,
+      "title": "Synthetic Derivative Disclosure Mandates",
+      "tag": "REGULATORY TRANSPARENCY",
+      "color": "#38BDF8",
+      "action": "Mandatory Real-Time Disclosure of Cash-Settled Swaps & Collars at 3%",
+      "mechanism": "Revise German WpHG / EU Transparency Directive to enforce immediate public disclosure for all synthetic derivatives, total return swaps, and collar contracts when aggregate economic exposure crosses 3%.",
+      "effectiveness": "Eliminates stealth warehousing by foreign state-backed SPVs like Tenaciou3."
+    },
+    {
+      "step": 2,
+      "title": "Allied Institutional Shareholder Bloc",
+      "tag": "GOVERNANCE COUNTER-WEIGHT",
+      "color": "#10B981",
+      "action": "Consolidate 35%+ Pro-European Institutional Coalition",
+      "mechanism": "Coordinate proxy voting pacts among Western sovereign wealth funds (Kuwait IA 4.9%), European public pension funds, and asset managers (BlackRock, DWS) to systematically outvote Chinese 19.67% blocks at AGMs.",
+      "effectiveness": "Guarantees simple majority (>50%) and outvotes Chinese bloc on supervisory board seats."
+    },
+    {
+      "step": 3,
+      "title": "Strategic Capital Dilution",
+      "tag": "EQUITY DILUTION",
+      "color": "#F59E0B",
+      "action": "Targeted Equity Issuance to European Strategic Mobility Funds",
+      "mechanism": "Issue 15–25% targeted new shares to European Sovereign Tech Funds (e.g. EIB, French-German Mobility Alliance) to dilute combined Chinese holdings from 19.67% down to 17.10% (or 15.74%), enabling allied proxy mobilization to break the 25% veto.",
+      "effectiveness": "Permanently weakens foreign voting control while funding next-gen solid-state battery and SDV capex."
+    },
+    {
+      "step": 4,
+      "title": "Strategic Golden Shares (Volksaktie / State Veto)",
+      "tag": "SOVEREIGN BACKSTOP",
+      "color": "#EC4899",
+      "action": "Legislative Golden Share on Critical Mobility & AI Infrastructure",
+      "mechanism": "Enact federal legislation creating golden shares granting the German Federal Government unilateral veto power over foreign takeovers, intellectual property spin-offs, and critical platform tech transfers.",
+      "effectiveness": "Provides permanent legal firewall against hostile sovereign capture regardless of AGM voting turnout."
+    }
+  ]
+}

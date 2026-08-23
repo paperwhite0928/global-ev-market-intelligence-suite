@@ -1,0 +1,53 @@
+[
+  {
+    "id": "mercedes",
+    "name": "Mercedes-Benz Group AG",
+    "trapType": "Capital Penetration & Flagship Margin Hostage Trap (2025 Baseline)",
+    "trapTag": "CAPITAL & S-CLASS PROFIT TRAP",
+    "color": "#94A3B8",
+    "primaryVulnerability": "19.67% Chinese state/private equity capture and disproportionate reliance on China for S-Class and Maybach operating profits",
+    "encroachmentSummary": "Geely (9.69% via collar options) and BAIC (9.98%) form the combined largest shareholder bloc (19.67%). In 2025, 76.2% (480k units) of China deliveries (630k units) are locally produced at Beijing Benz (BBAC), while 31.5% (€2.4B) of Group EBIT remains dependent on the Chinese market.",
+    "localProductionVsSales": "In 2025, 480k out of 630k China deliveries are locally assembled at BBAC (76.2% local production ratio).",
+    "shareholderStructure": "Geely 9.69% + BAIC 9.98% = 19.67% combined stake (commands ~37.5% effective AGM voting power at baseline turnout).",
+    "appeasementBehavior": "Constrained by Chinese equity capture and flagship margins (S-Class 38%, Maybach 45%), CEO Ola Källenius publicly opposed EU countervailing duties on Chinese EVs and lobbied the German Federal Government against trade defensive measures.",
+    "metadata": {
+      "source": "Mercedes-Benz Group AG Annual Report 2024/2025 Guidance / BaFin WpHG §33 Filing",
+      "baseDate": "2025-12-31 (Projected Statutory Baseline)",
+      "confidenceScore": "Tier 1: Audited Statutory"
+    }
+  },
+  {
+    "id": "volkswagen",
+    "name": "Volkswagen AG",
+    "trapType": "Software Failure & Technological Subcontracting Trap (2025 Baseline)",
+    "trapTag": "SOFTWARE REVERSAL & CEA LICENSING TRAP",
+    "color": "#002D72",
+    "primaryVulnerability": "In-house software division (CARIAD) failure (>€6B cumulative losses) leading to $705M equity investment and CEA zonal E/E architecture licensing from XPENG",
+    "encroachmentSummary": "China deliveries collapsed by -34.3% (-1.45M units) from 4.23M (2019) to 2.78M (2025). Despite manufacturing 2.58M units locally across ~40 facilities (92.8% localization ratio), VW lost market dominance to BYD and domestic EV champions, forcing it to license software architecture from XPENG as a technological subcontractor.",
+    "localProductionVsSales": "In 2025, 2.58M out of 2.78M China deliveries are produced domestically across joint venture facilities (92.8% localization ratio).",
+    "shareholderStructure": "Porsche-Piëch family (53.3%), State of Lower Saxony (20.0%), and Qatar (17.0%) hold voting shares, but operational assets are locked into SAIC and FAW 50:50 joint ventures.",
+    "appeasementBehavior": "Resisted European de-risking pressures and maintained operations in Xinjiang while committing an additional €2.5B into Hefei VCTC (Volkswagen China Technology Company) under the 'In China for China' banner, accelerating domestic software lock-in.",
+    "metadata": {
+      "source": "Volkswagen AG Annual Report 2024/2025 Deliveries / SEC Form 6-K XPENG Inc.",
+      "baseDate": "2025-12-31 (Projected Statutory Baseline)",
+      "confidenceScore": "Tier 1: Audited Statutory"
+    }
+  },
+  {
+    "id": "bmw",
+    "name": "BMW Group AG",
+    "trapType": "Shenyang Mega-Hub Sunk CapEx & Battery Captive Supply Trap (2025 Baseline)",
+    "trapTag": "SUPPLY CHAIN & REVERSE-EXPORT TRAP",
+    "color": "#18181B",
+    "primaryVulnerability": "Acquisition of 75% BBA stake (€3.73B) established Shenyang as global export hub for the iX3, creating 100% CATL battery dependency and direct exposure to EU countervailing duties",
+    "encroachmentSummary": "Shenyang (Tiexi/Dadong) facilities produce 560k units annually (86.2% localization). Deliveries dropped -23.2% from peak (846k in 2021) to 650k in 2025. 100% cell dependency on CATL and EVE Energy for the iX3 and Neue Klasse exposed global exports to EU 20.7% countervailing tariffs.",
+    "localProductionVsSales": "In 2025, 560k out of 650k China deliveries are manufactured at Shenyang BBA facilities (86.2% localization ratio).",
+    "shareholderStructure": "Quandt family holds 46.8% voting control, but the €3.73B consolidation of BBA 75% stake concentrated global manufacturing risk inside mainland China.",
+    "appeasementBehavior": "100% captive to CATL and EVE Energy battery supply, leaving BMW unable to meet Western origin requirements without relying on Chinese battery gigafactory investments in Hungary.",
+    "metadata": {
+      "source": "BMW Group Annual Report 2024/2025 Estimates / Regulation (EU) 2024/2754",
+      "baseDate": "2025-12-31 (Projected Statutory Baseline)",
+      "confidenceScore": "Tier 1: Audited Statutory"
+    }
+  }
+]
